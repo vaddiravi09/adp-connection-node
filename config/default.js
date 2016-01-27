@@ -12,7 +12,8 @@ module.exports = {
 		},
 		granttype: 'client_credentials',
 		securityoptions: 'SSL_OP_NO_SSLv3',
-		tokenurl: 'https://apidit.nj.adp.com/auth/oauth/v2/token'
+		tokenurl: 'https://apidit.nj.adp.com/auth/oauth/v2/token',
+		defaultexpiration: 3600
 	},
 	request: {
 		host: 'apimpdit.nj.adp.com',

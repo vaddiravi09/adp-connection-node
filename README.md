@@ -27,8 +27,10 @@ $ node client.js
 * Replace `lib/tmpMap.js` with an API call to Marketplace. Store in mongo. 
 * Add tests. 
 * Add code coverage. 
+* Refresh access token before epiration.
 
 ### Long-term
 * Support POST method API calls. 
 * Support all grant types. 
 * Support Meta.
+* Manage session

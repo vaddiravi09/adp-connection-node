@@ -10,14 +10,16 @@ var corpDir;
 
 var options = {
 	associateoid: 'G3BYYP2D9XJ4CVTF',
-	orgoid: 'G3BYYP2D9XJ4Z8WK'
+	orgoid: 'G3BYYP2D9XJ4Z8WK',
+	docs: true,
+	keepSessionAlive: true
 };
 adp.connect(options, () => {
 	worker = adp.apiProduct('Worker');
 	if(worker) {
 		worker.call('read', (err2, data2) => {
 			if(err2) {
-				log.error('Error returned from worker call.');
+				log.error('Error returned from worker call.' + err2);
 			}
 			log.info('RETURN WORKER READ - ' + JSON.stringify(data2));
 		});
