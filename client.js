@@ -12,7 +12,7 @@ var options = {
 	associateoid: 'G3BYYP2D9XJ4CVTF',
 	orgoid: 'G3BYYP2D9XJ4Z8WK',
 	docs: true,
-	keepSessionAlive: true
+	keepAlive: true
 };
 adp.connect(options, () => {
 	worker = adp.apiProduct('Worker');
