@@ -9,8 +9,8 @@ var taxStatement;
 var corpDir;
 
 var options = {
-	associateoid: 'G3BYYP2D9XJ4CVTF',
-	orgoid: 'G3BYYP2D9XJ4Z8WK',
+	associateoid: 'G3DHY9KFVPP9WGHE',
+	orgoid: 'G3DHY9KFVPP9RGAK',
 	docs: true,
 	keepAlive: true
 };

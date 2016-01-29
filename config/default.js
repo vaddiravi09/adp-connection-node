@@ -8,6 +8,16 @@ module.exports = {
 		host: 'localhost',
 		port: 8889
 	},
+	grantMap: [
+		{
+			type: 'client_credentials',
+			module: 'clientCredentials'
+		},
+		{
+			type: 'authorization_code',
+			module: 'authorizationCode'
+		}
+	],
 	A: {
 		connect: {
 			cert: {
@@ -53,11 +63,11 @@ module.exports = {
 				filetypes: ['pem', 'key']
 			},
 			client: {
-				// IAT API Client Auth Code
-				id: 'ec762f06-7410-4f6d-aa82-969902c1836a',
-				secret: '6daf2cd7-4604-46c0-ab43-a645a6571d34'
+				// IAT API Client Client Creds
+				id: 'e62f181c-3233-4636-bb82-9be5c9f3e3e0',
+				secret: 'fbce97f8-5d3a-42cc-a774-9126c5270625'
 			},
-			granttype: 'authorization_code',
+			granttype: 'client_credentials',
 			preconnecttypes: ['authorization_code'],
 			securityoptions: 'SSL_OP_NO_SSLv3',
 			tokenurl: 'https://iat-api.adp.com/auth/oauth/v2/token',
