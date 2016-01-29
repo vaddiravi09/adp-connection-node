@@ -1,6 +1,6 @@
 'use strict';
 
-var adp = require('./lib/adp');
+var ADP = require('./lib/adp');
 var log = require('winston');
 
 var worker;
@@ -14,6 +14,7 @@ var options = {
 	docs: true,
 	keepAlive: true
 };
+var adp = new ADP('B');
 adp.connect(options, () => {
 	worker = adp.apiProduct('Worker');
 	if(worker) {

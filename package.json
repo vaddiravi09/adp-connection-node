@@ -4,7 +4,8 @@
   "description": "ADP NodeJS APIClient",
   "main": "index.js",
   "scripts": {
-    "test": "mocha"
+    "test": "mocha",
+    "lint": "eslint ./"
   },
   "author": "JDS",
   "license": "ISC",
