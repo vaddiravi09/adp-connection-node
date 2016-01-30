@@ -76,7 +76,7 @@ module.exports = {
 			// authorizationurl: 'https://apidit.nj.adp.com/auth/oauth/v2/authorize',
 			callbackurl: 'http://localhost:8889/callback',
 			responsetype: 'code',
-			scope: 'openid',
+			scope: 'openid', // set upon connection time.
 			defaultexpiration: 3600
 		},
 		request: {
@@ -93,8 +93,35 @@ module.exports = {
 		userProfile: {
 			path: '/events/core/v1/mkpl-user-profile'
 		}
+	},
+	request: {
+		host: 'apimpiat.gslb.es.oneadp.com',
+		port: 80,
+		defaultrealm: 'ISI'
+	},
+	userProfile: {
+		path: '/events/core/v1/mkpl-user-profile'
+	},
+	apiurl: 'https://iat-api.adp.com',
+	connect: {
+		certFiles: ['iatCerts/iat.key', 'iatCerts/iat.pem'],
+		client: {
+			// IAT API Client Client Creds
+			id: 'e62f181c-3233-4636-bb82-9be5c9f3e3e0',
+			secret: 'fbce97f8-5d3a-42cc-a774-9126c5270625'
+		},
+		granttype: 'client_credentials',
+		preconnecttypes: ['authorization_code'],
+		securityoptions: 'SSL_OP_NO_SSLv3',
+		tokenurl: 'https://iat-api.adp.com/auth/oauth/v2/token',
+		authorizationurl: 'https://iat-accounts.adp.com/auth/oauth/v2/authorize',
+		// tokenurl: 'https://apidit.nj.adp.com/auth/oauth/v2/token',
+		// authorizationurl: 'https://apidit.nj.adp.com/auth/oauth/v2/authorize',
+		callbackurl: 'http://localhost:8889/callback',
+		responsetype: 'code',
+		scope: 'openid', // set upon connection time.
+		defaultexpiration: 3600
 	}
-
 };
 
 // API CLient Client Creds

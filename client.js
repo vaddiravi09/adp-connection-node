@@ -15,8 +15,11 @@ var options = {
 	keepAlive: true
 };
 var adp = new ADP('B');
-adp.connect(options, () => {
-	worker = adp.apiProduct('Worker');
+var connection = adp.createConnection('client_credentials');
+connection.setCallbackUrl('http://localhost:8889/callbacj');
+console.log(connection.callbackUrl)
+connection.connect(options, () => {
+	worker = adp.apiProduct(connection, 'Worker');
 	if(worker) {
 		worker.call('read', (err2, data2) => {
 			if(err2) {
@@ -25,7 +28,7 @@ adp.connect(options, () => {
 			log.info('RETURN WORKER READ - ' + JSON.stringify(data2));
 		});
 	}
-	userInfo = adp.apiProduct('UserInfo');
+	userInfo = adp.apiProduct(connection, 'UserInfo');
 	userInfo.call('read', (err2, data2) => {
 		if(err2) {
 			log.error('Error returned from user info call.');
@@ -33,14 +36,14 @@ adp.connect(options, () => {
 		log.info('RETURN USER INFO READ - ' + JSON.stringify(data2));
 
 	});
-	taxStatement = adp.apiProduct('TaxStatement');
+	taxStatement = adp.apiProduct(connection, 'TaxStatement');
 	taxStatement.call('read', (err2, data2) => {
 		if(err2) {
 			log.error('Error returned from tax statement call.');
 		}
 		log.info('RETURN TAX INFO READ - ' + JSON.stringify(data2));
 	});
-	corpDir = adp.apiProduct('CorpDirectory');
+	corpDir = adp.apiProduct(connection, 'CorpDirectory');
 	corpDir.call('read', (err2, data2) => {
 		if(err2) {
 			log.error('Error returned from corp directory call.');
