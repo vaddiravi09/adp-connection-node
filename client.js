@@ -16,8 +16,6 @@ var options = {
 };
 var adp = new ADP('B');
 var connection = adp.createConnection('client_credentials');
-connection.setCallbackUrl('http://localhost:8889/callbacj');
-console.log(connection.callbackUrl)
 connection.connect(options, () => {
 	worker = adp.apiProduct(connection, 'Worker');
 	if(worker) {

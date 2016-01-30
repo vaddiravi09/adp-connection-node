@@ -16,6 +16,9 @@ $ node client.js
 
 # TODOs
 
+### Known bugs
+* Token refresh for Client Credentials does not pass refreshed auth token back to connection object. 
+
 ### Short-term
 * Config connection profile as an option. 
 	* Should point to path for connection config. 
