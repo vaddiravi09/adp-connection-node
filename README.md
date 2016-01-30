@@ -30,6 +30,6 @@ $ node client.js
 * Support all saml2 connection/bearer. 
 * Support Meta.
 
-# Out of scope
+### Out of scope
 * Manage session
 * Manage user data between sessions
