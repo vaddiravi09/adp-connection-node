@@ -105,7 +105,7 @@ module.exports = {
 	connect: {
 		certFiles: ['iatCerts/iat.key', 'iatCerts/iat.pem'],
 		validCertTypes: ['pem', 'key'],
-		//preconnecttypes: ['authorization_code'],
+		// preconnecttypes: ['authorization_code'],
 		client: {
 			// IAT API Client Client Creds
 			id: 'e62f181c-3233-4636-bb82-9be5c9f3e3e0',
