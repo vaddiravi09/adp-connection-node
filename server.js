@@ -11,11 +11,11 @@ var log = require('winston');
 
 function start(cb) {
 	mongoose.connect(DB);
-	let db = mongoose.connection;
+	var db = mongoose.connection;
 	db.on('error', cb);
 	db.once('open', function openCb() {
 		log.info('Database connection complete.');
-		let app = express();
+		var app = express();
 		app.use(routes);
 		app.use(express.static('web'));
 		server = app.listen(PORT, cb);

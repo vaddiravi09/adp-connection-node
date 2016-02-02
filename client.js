@@ -16,10 +16,10 @@ var options = {
 };
 var adp = new ADP('B');
 var connection = adp.createConnection('client_credentials');
-connection.connect(options, () => {
+connection.connect(options, function(){
 	worker = adp.apiProduct(connection, 'Worker');
 	if(worker) {
-		worker.call('read', (err2, data2) => {
+		worker.call('read', function(err2, data2) {
 			if(err2) {
 				log.error('Error returned from worker call.' + err2);
 			}
@@ -27,7 +27,7 @@ connection.connect(options, () => {
 		});
 	}
 	userInfo = adp.apiProduct(connection, 'UserInfo');
-	userInfo.call('read', (err2, data2) => {
+	userInfo.call('read', function (err2, data2)  {
 		if(err2) {
 			log.error('Error returned from user info call.');
 		}
@@ -35,14 +35,14 @@ connection.connect(options, () => {
 
 	});
 	taxStatement = adp.apiProduct(connection, 'TaxStatement');
-	taxStatement.call('read', (err2, data2) => {
+	taxStatement.call('read', function(err2, data2)  {
 		if(err2) {
 			log.error('Error returned from tax statement call.');
 		}
 		log.info('RETURN TAX INFO READ - ' + JSON.stringify(data2));
 	});
 	corpDir = adp.apiProduct(connection, 'CorpDirectory');
-	corpDir.call('read', (err2, data2) => {
+	corpDir.call('read', function(err2, data2) {
 		if(err2) {
 			log.error('Error returned from corp directory call.');
 		}
