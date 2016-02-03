@@ -14,6 +14,21 @@ $ npm install
 $ node client.js
 ```
 
+### Test Execution
+```sh
+$ npm test
+```
+
+### Code Coverage
+```sh
+$ npm run coverage
+```
+
+### Lint
+```sh
+$ npm run lint
+```
+
 # TODOs
 
 ### Known bugs
