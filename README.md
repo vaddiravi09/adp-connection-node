@@ -7,27 +7,29 @@
 ![forthebadge](http://forthebadge.com/images/badges/uses-badges.svg)
 ![forthebadge](http://forthebadge.com/images/badges/gluten-free.svg)
 ### Installation / Execution 
-
-
 ```sh
 $ npm install
 $ node client.js
 ```
+
 
 ### Test Execution
 ```sh
 $ npm test
 ```
 
+
 ### Code Coverage
 ```sh
 $ npm run coverage
 ```
 
+
 ### Lint
 ```sh
 $ npm run lint
 ```
+
 
 # TODOs
 
