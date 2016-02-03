@@ -101,8 +101,8 @@ module.exports = {
 	userProfile: {
 		path: '/events/core/v1/mkpl-user-profile'
 	},
-	apiurl: 'https://iat-api.adp.com',
 	connect: {
+		apiurl: 'https://iat-api.adp.com',
 		certFiles: ['iatCerts/iat.key', 'iatCerts/iat.pem'],
 		validCertTypes: ['pem', 'key'],
 		// preconnecttypes: ['authorization_code'],
