@@ -6,14 +6,6 @@ var APIProductInstance = require('../../lib/apiProductInstance.js');
 
 describe('ADP module test', function descCb() {
 
-	before(function beforeCb(done){
-		//server.start(done);
-		done();
-	});
-	after(function afterCb(done){
-		//server.stop(done);
-		done();
-	});
 	var adp;
 	var connection;
 	var anotherconnection;
@@ -83,9 +75,7 @@ describe('ADP module test', function descCb() {
 		connection.setClientSecret('6daf2cd7-4604-46c0-ab43-a645a6571d34');
 		
 		connection.connect(options, function connectCb(err) {
-			if(err) {
-				console.log('ERRRRR', err);
-			}
+			(err === null).should.equal(false);
 			done();
 		});
 	});

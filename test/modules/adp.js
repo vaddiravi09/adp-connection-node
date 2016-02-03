@@ -3,15 +3,10 @@ require('chai').should();
 var ADP = require('../../lib/adp.js');
 var ADPConnection = require('../../lib/adpConnection.js');
 var APIProductInstance = require('../../lib/apiProductInstance.js');
+var authenticate = require('../../lib/authenticate.js');
 
 describe('ADP module test', function descCb() {
 
-	before(function beforeCb(done){
-		done();
-	});
-	after(function afterCb(done){
-		done();
-	});
 	var adp;
 	var connection;
 	var anotherconnection;
@@ -95,6 +90,23 @@ describe('ADP module test', function descCb() {
 		});
 	});
 
+
+	it('should fail to connect when invalid cert file locations are given.', function itCb(done){
+		adp = new ADP();
+		anotherconnection = adp.createConnection('client_credentials');
+		var options = {
+			associateoid: 'G3DHY9KFVPP9WGHE',
+			orgoid: 'G3DHY9KFVPP9RGAK',
+			docs: true,
+			keepAlive: true
+		};
+		anotherconnection.setCertFiles(['iatCerts/iat.bad2', 'iatCerts/iat.bad'])
+		anotherconnection.connect(options, function connectCb(err){
+			(err === null).should.equal(false)
+			done();
+		});
+	});
+
 	it('should create instance of ADPConnection when calling createConnection method.', function itCb(done){
 		connection = adp.createConnection('client_credentials');
 		(connection instanceof ADPConnection).should.equal(true);
@@ -122,6 +134,14 @@ describe('ADP module test', function descCb() {
 
 	it('should allow call of user info read.', function itCb(done){
 		userInfo.call('read', function readCb(err, data){
+			(err === null).should.equal(true);
+			done();
+		});
+	});
+
+	it('should fail to call invalid method.', function itCb(done){
+		userInfo.call('invalidmethod', function readCb(err, data){
+			(err === null).should.equal(false);
 			done();
 		});
 	});
@@ -197,9 +217,45 @@ describe('ADP module test', function descCb() {
 		} catch(err) {
 			(typeof err !== 'undefined').should.equal(true);// will fail
 		}
-
-		done()
+		done();
 	});
 
+	it('should fail to find auth module for invalid grant type', function itCb(done){
+		try{
+			var auth = authenticate({granttype: 'some_thing'});
+			(true).should.equal(false);
+		} catch(err) {
+			(err === null).should.equal(false);
+		}
+		done();
+	});
+
+	it('should allow set token expiration for client_credentials', function itCb(done){
+		var auth = authenticate({granttype: 'client_credentials'});
+		auth.setTokenExpiration({expires_in: 100});
+		(true).should.equal(true);
+		done();
+	});	
+
+	it('should allow set token expiration for authorization_code', function itCb(done){
+		var auth = authenticate({granttype: 'authorization_code'});
+		auth.setTokenExpiration({expires_in: 100});
+		(true).should.equal(true);
+		done();
+	});	
+
+	it('should allow token refresh for client_credentials', function itCb(done){
+		var auth = authenticate({granttype: 'client_credentials'});
+		auth.refreshToken();
+		(true).should.equal(true);
+		done();
+	});	
+/*
+	it('should execute token refresh', function itCb(done){
+		setTimeout(function(){
+			done();
+		}, 100000);
+	});
+*/
 });
 
