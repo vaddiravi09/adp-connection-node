@@ -1,6 +1,7 @@
 'use strict';
 
 var ADP = require('./lib/adp');
+var ClientCredentialsConnType = require('./lib/clientCredentialsConnType');
 var log = require('winston');
 
 var worker;
@@ -8,14 +9,27 @@ var userInfo;
 var taxStatement;
 var corpDir;
 
+
+var adp = new ADP();
+var connType = new ClientCredentialsConnType();
+
+var initObject = {
+	clientId: 'e62f181c-3233-4636-bb82-9be5c9f3e3e0',
+	clientSecret: 'fbce97f8-5d3a-42cc-a774-9126c5270625',
+	apiUrl: 'https://iat-api.adp.com',
+	tokenUrl: 'https://iat-api.adp.com/auth/oauth/v2/token'
+};
+connType.init(initObject);
+connType.setSSLCertPath('iatCerts/iat.pem');
+connType.setSSLKeyPath('iatCerts/iat.key');
+
 var options = {
-	associateoid: 'G3DHY9KFVPP9WGHE',
-	orgoid: 'G3DHY9KFVPP9RGAK',
-	docs: true,
+	associateoid: 'G3DHY9KFVPP9WGHE', // will go away
+	orgoid: 'G3DHY9KFVPP9RGAK', // will go away
 	keepAlive: true
 };
-var adp = new ADP('B');
 var connection = adp.createConnection('client_credentials');
+connection.init(connType);
 connection.connect(options, function connectCb(){
 	worker = adp.apiProduct(connection, 'Worker');
 	if(worker) {
