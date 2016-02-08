@@ -28,6 +28,8 @@ $ npm test
 $ npm run coverage
 ```
 
+[linkToFile](test/mocha.opts)
+
 
 ### Lint
 ```sh
