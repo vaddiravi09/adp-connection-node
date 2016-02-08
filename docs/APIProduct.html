@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Class: ADPAPIConnection</title>
+    <title>JSDoc: Class: APIProduct</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,7 +17,7 @@
 
 <div id="main">
 
-    <h1 class="page-title">Class: ADPAPIConnection</h1>
+    <h1 class="page-title">Class: APIProduct</h1>
 
     
 
@@ -28,7 +28,7 @@
 
 <header>
     
-        <h2>ADPAPIConnection</h2>
+        <h2>APIProduct</h2>
         
     
 </header>
@@ -40,15 +40,11 @@
 
     
 
-    <h4 class="name" id="ADPAPIConnection"><span class="type-signature"></span>new ADPAPIConnection<span class="signature">()</span><span class="type-signature"></span></h4>
+    <h4 class="name" id="APIProduct"><span class="type-signature"></span>new APIProduct<span class="signature">()</span><span class="type-signature"></span></h4>
 
     
 
 
-
-<div class="description">
-    Connection object for access to ADP APIs.
-</div>
 
 
 
@@ -91,7 +87,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="adpConnection.js.html">adpConnection.js</a>, <a href="adpConnection.js.html#line7">line 7</a>
+        <a href="apiProduct.js.html">apiProduct.js</a>, <a href="apiProduct.js.html#line9">line 9</a>
     </li></ul></dd>
     
 
@@ -131,82 +127,6 @@
     
 
     
-        <h3 class="subsection-title">Members</h3>
-
-        
-            
-<h4 class="name" id=".this.granttype"><span class="type-signature">(private, static) </span>this.granttype<span class="type-signature"> :string</span></h4>
-
-
-
-
-<div class="description">
-    Value for the grant type associated with the <a href="ADPAPIConnection.html">ADPAPIConnection</a> instance.
-</div>
-
-
-
-    <h5>Type:</h5>
-    <ul>
-        <li>
-            
-<span class="param-type">string</span>
-
-
-        </li>
-    </ul>
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="adpConnection.js.html">adpConnection.js</a>, <a href="adpConnection.js.html#line20">line 20</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-        
-    
 
     
         <h3 class="subsection-title">Methods</h3>
@@ -216,14 +136,14 @@
 
     
 
-    <h4 class="name" id=".this.connect"><span class="type-signature">(static) </span>this.connect<span class="signature">(_opts, cb)</span><span class="type-signature"> &rarr; {void}</span></h4>
+    <h4 class="name" id=".this.apiProduct"><span class="type-signature">(static) </span>this.apiProduct<span class="signature">(connection, productName)</span><span class="type-signature"> &rarr; {<a href="APIProductInstance.html">APIProductInstance</a>}</span></h4>
 
     
 
 
 
 <div class="description">
-    Connect to ADP. This step is required to obtain the access token which is required to make API calls.
+    Returns instance of <a href="APIProductInstance.html">APIProductInstance</a>
 </div>
 
 
@@ -259,13 +179,13 @@
 
         <tr>
             
-                <td class="name"><code>_opts</code></td>
+                <td class="name"><code>connection</code></td>
             
 
             <td class="type">
             
                 
-<span class="param-type">object</span>
+<span class="param-type"><a href="ADPAPIConnection.html">ADPAPIConnection</a></span>
 
 
             
@@ -275,20 +195,20 @@
 
             
 
-            <td class="description last">Object literal. Deprecated</td>
+            <td class="description last">Connected instance of <a href="ADPAPIConnection.html">ADPAPIConnection</a></td>
         </tr>
 
     
 
         <tr>
             
-                <td class="name"><code>cb</code></td>
+                <td class="name"><code>productName</code></td>
             
 
             <td class="type">
             
                 
-<span class="param-type">function</span>
+<span class="param-type">string</span>
 
 
             
@@ -298,7 +218,7 @@
 
             
 
-            <td class="description last">Callback function to execute upon successful connection or upon exception during connection routine.</td>
+            <td class="description last">mapped API Product name.</td>
         </tr>
 
     
@@ -339,112 +259,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="adpConnection.js.html">adpConnection.js</a>, <a href="adpConnection.js.html#line41">line 41</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-
-<h5>Listens to Events:</h5>
-<ul>
-    <li>event:tokenRefresh</li>
-</ul>
-
-
-
-
-
-
-
-<h5>Returns:</h5>
-
-        
-
-
-<dl>
-    <dt>
-        Type
-    </dt>
-    <dd>
-        
-<span class="param-type">void</span>
-
-
-    </dd>
-</dl>
-
-    
-
-
-
-        
-            
-
-    
-
-    <h4 class="name" id=".this.disconnect"><span class="type-signature">(static) </span>this.disconnect<span class="signature">()</span><span class="type-signature"> &rarr; {boolean}</span></h4>
-
-    
-
-
-
-<div class="description">
-    Disconnect this instance of APIAPIConnection. This method will disconnect revoke the access token.
-</div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="adpConnection.js.html">adpConnection.js</a>, <a href="adpConnection.js.html#line81">line 81</a>
+        <a href="apiProduct.js.html">apiProduct.js</a>, <a href="apiProduct.js.html#line76">line 76</a>
     </li></ul></dd>
     
 
@@ -471,7 +286,7 @@
 
         
 <div class="param-desc">
-    disconnected
+    APIProductInstance  Instance of <a href="APIProductInstance.html">APIProductInstance</a>
 </div>
 
 
@@ -482,7 +297,7 @@
     </dt>
     <dd>
         
-<span class="param-type">boolean</span>
+<span class="param-type"><a href="APIProductInstance.html">APIProductInstance</a></span>
 
 
     </dd>
@@ -497,14 +312,14 @@
 
     
 
-    <h4 class="name" id=".this.init"><span class="type-signature">(static) </span>this.init<span class="signature">(connType)</span><span class="type-signature"> &rarr; {void}</span></h4>
+    <h4 class="name" id=".this.getMappedProducts"><span class="type-signature">(private, static) </span>this.getMappedProducts<span class="signature">(cb)</span><span class="type-signature"> &rarr; {void}</span></h4>
 
     
 
 
 
 <div class="description">
-    Initialize the connection with instance of Connection type
+    Maps API Products by finding the intersection between the supported API Products and user profile permissions. Deprecated.
 </div>
 
 
@@ -540,13 +355,13 @@
 
         <tr>
             
-                <td class="name"><code>connType</code></td>
+                <td class="name"><code>cb</code></td>
             
 
             <td class="type">
             
                 
-<span class="param-type">ConnectionType</span>
+<span class="param-type">function</span>
 
 
             
@@ -556,7 +371,7 @@
 
             
 
-            <td class="description last">Connection Type should be <a href="ClientCredentialsConnectionType.html">ClientCredentialsConnectionType</a> OR <a href="AuthorizationCodeConnectionType.html">AuthorizationCodeConnectionType</a></td>
+            <td class="description last">Function to be executed upon mapping all API Products.</td>
         </tr>
 
     
@@ -597,7 +412,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="adpConnection.js.html">adpConnection.js</a>, <a href="adpConnection.js.html#line29">line 29</a>
+        <a href="apiProduct.js.html">apiProduct.js</a>, <a href="apiProduct.js.html#line62">line 62</a>
     </li></ul></dd>
     
 
@@ -646,14 +461,14 @@
 
     
 
-    <h4 class="name" id=".this.initApiProduct"><span class="type-signature">(private, static) </span>this.initApiProduct<span class="signature">()</span><span class="type-signature"> &rarr; {void}</span></h4>
+    <h4 class="name" id=".this.getUserProfile"><span class="type-signature">(private, static) </span>this.getUserProfile<span class="signature">(cb)</span><span class="type-signature"> &rarr; {void}</span></h4>
 
     
 
 
 
 <div class="description">
-    Intialize the <a href="APIProduct.html">APIProduct</a> instance.
+    Retrieves the User Profile for the authenticated user.
 </div>
 
 
@@ -662,6 +477,55 @@
 
 
 
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>cb</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">function</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">Function to be executed upon successfully pulling user profile.</td>
+        </tr>
+
+    
+    </tbody>
+</table>
 
 
 
@@ -685,6 +549,8 @@
     
 
     
+        <dt class="important tag-deprecated">Deprecated:</dt><dd class="yes-def tag-deprecated"><ul class="dummy"><li>Yes</li></ul></dd>
+    
 
     
 
@@ -697,7 +563,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="adpConnection.js.html">adpConnection.js</a>, <a href="adpConnection.js.html#line91">line 91</a>
+        <a href="apiProduct.js.html">apiProduct.js</a>, <a href="apiProduct.js.html#line36">line 36</a>
     </li></ul></dd>
     
 
@@ -746,14 +612,14 @@
 
     
 
-    <h4 class="name" id=".this.refreshToken"><span class="type-signature">(private, static) </span>this.refreshToken<span class="signature">()</span><span class="type-signature"> &rarr; {void}</span></h4>
+    <h4 class="name" id=".this.init"><span class="type-signature">(static) </span>this.init<span class="signature">(opts, cb)</span><span class="type-signature"> &rarr; {void}</span></h4>
 
     
 
 
 
 <div class="description">
-    called internally when authentication method allows refreshed access tokens.
+    Initializes the APIProduct instance by finding mapped API Products supported by ADP.
 </div>
 
 
@@ -762,6 +628,78 @@
 
 
 
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>opts</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">object</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">Deprecated</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>cb</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">function</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">Function to be executed upon successful initialization or upon exception during initialization.</td>
+        </tr>
+
+    
+    </tbody>
+</table>
 
 
 
@@ -797,7 +735,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="adpConnection.js.html">adpConnection.js</a>, <a href="adpConnection.js.html#line110">line 110</a>
+        <a href="apiProduct.js.html">apiProduct.js</a>, <a href="apiProduct.js.html#line21">line 21</a>
     </li></ul></dd>
     
 
@@ -863,7 +801,7 @@
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.0</a> on Mon Feb 08 2016 18:33:55 GMT-0500 (EST)
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.0</a> on Mon Feb 08 2016 18:44:38 GMT-0500 (EST)
 </footer>
 
 <script> prettyPrint(); </script>

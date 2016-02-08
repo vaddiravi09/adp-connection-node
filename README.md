@@ -14,7 +14,7 @@ $ node client.js
 
 ### Full API Documentation (JSDoc)
 
-[Current Documentation can be found here.](out/index.html)
+[Current Documentation can be found here.](docs/index.html)
 
 ```sh
 $ npm run docs
