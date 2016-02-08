@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "coverage": "NODE_ENV=TEST istanbul cover _mocha; cp coverage/lcov-report/index.html test/coverage.html",
+    "docs": "jsdoc ./lib -r -p",
     "test": "mocha",
     "lint": "eslint ./"
   },
@@ -22,6 +23,7 @@
     "chai": "^3.5.0",
     "eslint": "^1.10.3",
     "istanbul": "^0.4.2",
+    "jsdoc": "^3.4.0",
     "mocha": "^2.4.5",
     "restler": "^3.4.0"
   }

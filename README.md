@@ -12,6 +12,10 @@ $ npm install
 $ node client.js
 ```
 
+### Full API Documentation (JSDoc)
+```sh
+$ npm run docs
+```
 
 ### Test Execution
 ```sh
