@@ -3,9 +3,6 @@
 > "A sweet api client." - Abraham Lincoln
 
 
-
-![forthebadge](http://forthebadge.com/images/badges/uses-badges.svg)
-![forthebadge](http://forthebadge.com/images/badges/gluten-free.svg)
 ### Installation / Execution 
 ```sh
 $ npm install
