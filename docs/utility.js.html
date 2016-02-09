@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Source: authenticate.js</title>
+    <title>JSDoc: Source: utility.js</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,7 +17,7 @@
 
 <div id="main">
 
-    <h1 class="page-title">Source: authenticate.js</h1>
+    <h1 class="page-title">Source: utility.js</h1>
 
     
 
@@ -28,29 +28,43 @@
         <article>
             <pre class="prettyprint source linenums"><code>'use strict';
 
-var log = require('winston');
-var config = require('config');
-var _ = require('underscore');
-
 /**
-@module Authenticate
-@description Factory module for producing instance of {@link ClientCredentialsConnection} OR {@link AuthorizationCodeConnection}
-@param conn {ADPAPIConnection} Connected instance of {@link ADPAPIConnection}
+@module Interpolate
+@description Replace string variables using an object map. 
+@param val {string} Template string with variable place holders.
+@param opts {object} Object literal with replacement properties.
+@returns val {string}
+@example 
+interpolate('replace place holders between the {somereplacement}', {somereplacement: 'braces'}) -> 'replace place holders between the braces'
 */
-module.exports = function auth(conn) {
-	try{
-		var grantMap = config.get('grantMap');
-		var map = _.where(grantMap, {type: conn.granttype})[0];
-		if(map) {
-			log.info('Authentication module found for grant type ' + conn.granttype);
-			var Auth = require('./' + map.module);
-			return new Auth(conn);
-		} else {
-			throw new TypeError('Unable to find authorization module based on configured grant type. Check `config>default.js>connect>granttype` value.');
+module.exports = function interpolate(val, opts) {
+	var beginMarker = '{';
+	var endMarker = '}';
+	var keep = false;
+	var param = '';
+	var params = [];
+	for(var i = 0; i &lt; val.length; i++) {
+		if(val[i] === beginMarker) {
+			keep = true;
 		}
-	} catch(e) {
-		throw new Error('Unable to find authorization module based on configured grant type. Check `config>default.js>connect>granttype` value.');
+		if(keep) {
+			param += val[i];
+		}
+		if(val[i] === endMarker &amp;&amp; param.length > 0) {
+			keep = false;
+			params.push(param);
+			param = '';
+		}
 	}
+	params.forEach(function paramsForEachCb(p) {
+		var cleaned = p.substring(1, p.length - 1);
+		if(opts[cleaned]) {
+			val = val.replace(p, opts[cleaned]);
+		} else {
+			// log error.
+		}
+	});
+	return val;
 };
 </code></pre>
         </article>

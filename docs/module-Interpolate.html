@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Module: Authenticate</title>
+    <title>JSDoc: Module: Interpolate</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,7 +17,7 @@
 
 <div id="main">
 
-    <h1 class="page-title">Module: Authenticate</h1>
+    <h1 class="page-title">Module: Interpolate</h1>
 
     
 
@@ -38,7 +38,7 @@
     <div class="container-overview">
     
         
-            <div class="description">Factory module for producing instance of <a href="ClientCredentialsConnection.html">ClientCredentialsConnection</a> OR <a href="AuthorizationCodeConnection.html">AuthorizationCodeConnection</a></div>
+            <div class="description">Replace string variables using an object map.</div>
         
 
         
@@ -79,13 +79,13 @@
 
         <tr>
             
-                <td class="name"><code>conn</code></td>
+                <td class="name"><code>val</code></td>
             
 
             <td class="type">
             
                 
-<span class="param-type"><a href="ADPAPIConnection.html">ADPAPIConnection</a></span>
+<span class="param-type">string</span>
 
 
             
@@ -95,7 +95,30 @@
 
             
 
-            <td class="description last">Connected instance of <a href="ADPAPIConnection.html">ADPAPIConnection</a></td>
+            <td class="description last">Template string with variable place holders.</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>opts</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">object</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">Object literal with replacement properties.</td>
         </tr>
 
     
@@ -136,7 +159,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="authenticate.js.html">authenticate.js</a>, <a href="authenticate.js.html#line7">line 7</a>
+        <a href="utility.js.html">utility.js</a>, <a href="utility.js.html#line3">line 3</a>
     </li></ul></dd>
     
 
@@ -159,6 +182,33 @@
 
 
 
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    val
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">string</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+    <h5>Example</h5>
+    
+    <pre class="prettyprint"><code>interpolate('replace place holders between the {somereplacement}', {somereplacement: 'braces'}) -> 'replace place holders between the braces'</code></pre>
 
 
 
