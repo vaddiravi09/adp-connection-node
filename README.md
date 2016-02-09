@@ -1,7 +1,5 @@
 # NodeJS APIClient 
 
-> "A sweet api client." - Abraham Lincoln
-
 
 ### Installation / Execution 
 ```sh
@@ -10,7 +8,7 @@ $ node client.js
 ```
 
 ### Full API Documentation (JSDoc)
-
+g
 [Current Documentation can be found here.](docs/)
 
 ```sh
