@@ -9,7 +9,7 @@
     "test": "mocha",
     "lint": "eslint ./"
   },
-  "author": "JDS",
+  "author": "ADP Marketplace",
   "license": "ISC",
   "dependencies": {
     "config": "^1.19.0",

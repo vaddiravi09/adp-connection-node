@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Home</title>
+    <title>JSDoc: Source: adpApiConnectionFactory.js</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,32 +17,49 @@
 
 <div id="main">
 
-    <h1 class="page-title">Home</h1>
+    <h1 class="page-title">Source: adpApiConnectionFactory.js</h1>
 
     
 
 
 
     
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>'use strict';
+
+var ADPConnection = require('./adpConnection');
+var log = require('winston');
+var config = require('config');
+var _ = require('underscore');
 
 
-    <h3> </h3>
+/**
+@class ADPAPIConnectionFactory
+@description contains factory method for producing instances of ADPConnection
+*/
+function ADPAPIConnectionFactory() {
 
+	/**
+	@memberof ADPAPIConnectionFactory
+	@description Factory method for producing instances of ADPConnection
+	@returns instance of {@link ADPAPIConnection}
+	*/
+	this.createConnection = function createConnection(granttype) {
+		var grantMap = config.get('grantMap');
+		var validGrantTypes = _.pluck(grantMap, 'type');
+		if(~validGrantTypes.indexOf(granttype)) {
+			log.info('Found mapped grant type module for ' + granttype);
+			return new ADPConnection({granttype: granttype});
+		}
+	};
 
+}
 
-
-
-
-
-
-
-
-    
-
-
-
-
-
+module.exports = ADPAPIConnectionFactory;
+</code></pre>
+        </article>
+    </section>
 
 
 

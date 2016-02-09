@@ -120,6 +120,10 @@ module.exports = {
 		responsetype: 'code',
 		scope: 'openid', // set upon connection time.
 		defaultexpiration: 3600
+	},
+	helperMap: {
+		UserInfo: 'userInfoHelper',
+		Worker: 'workerHelper'
 	}
 };
 

@@ -1,16 +1,16 @@
 # NodeJS APIClient 
 
-
 ### Installation / Execution 
 ```sh
 $ npm install
 $ node client.js
 ```
 
-### Full API Documentation (JSDoc)
-g
-[Current Documentation can be found here.](docs/)
+### [View HTML Docs](docs/)
 
+# Useful Commands
+
+### Generate Documentation (JSDoc)
 ```sh
 $ npm run docs
 ```
@@ -20,19 +20,26 @@ $ npm run docs
 $ npm test
 ```
 
-
 ### Code Coverage
 ```sh
 $ npm run coverage
 ```
-
-
 
 ### Lint
 ```sh
 $ npm run lint
 ```
 
+# Examples 
+
+```javascript
+
+var ADPConnectionType = require('ClientCredentialsConnType')
+var ADP = require('ADP');
+var adp = new ADP();
+
+
+```
 
 # TODOs
 

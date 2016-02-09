@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Home</title>
+    <title>JSDoc: Source: adpApiProductFactory.js</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,32 +17,55 @@
 
 <div id="main">
 
-    <h1 class="page-title">Home</h1>
+    <h1 class="page-title">Source: adpApiProductFactory.js</h1>
 
     
 
 
 
     
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>'use strict';
 
+var mapProducts = require('./mapProducts');
+var APIProductInstance = require('./apiProductInstance');
+var log = require('winston');
 
-    <h3> </h3>
+/**
+@class ADPAPIProductFactory
+*/
+function ADPAPIProductFactory() {
 
+	var mapped = mapProducts();
 
+	/**
+	@private
+	@memberof ADPAPIProductFactory
+	@description Intialize the {@link APIProductInstance} instance.
+	@returns {void}
+	*/
+	this.createApiProduct = function createApiProduct(connection, productName) {
+		var mappedProduct;
 
+		mapped.forEach(function forEachCb(product) {
+			if(productName === product.productName) {
+				mappedProduct = product;
+			}
+		});
+		if(mappedProduct) {
+			return new APIProductInstance(connection, mappedProduct);
+		} else {
+			log.error('Unable to map api product ' + productName);
+			return null;
+		}
+	};
+};
 
-
-
-
-
-
-
-    
-
-
-
-
-
+module.exports = ADPAPIProductFactory;
+</code></pre>
+        </article>
+    </section>
 
 
 
