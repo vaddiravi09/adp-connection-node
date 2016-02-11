@@ -119,6 +119,56 @@ describe('Client Credentials Tests', function describeCb(){
 });
 
 describe('Authorization Code Tests', function describeCb(){
+	var acconnection;
+
+	it('ADP Connection should provide authorization url', function itCb(done){
+		acconnection = connectionFactory.createConnection('authorization_code');
+		acconnection.init(validACConnType);
+		acconnection.connect({keepAlive: true}, function connectCb(err){
+			var url = acconnection.getAuthorizationRequest();
+			(typeof url).should.equal('string');
+			
+			done();
+		});
+	});
+/*
+	it('Should get Authorization Request Url', function itCb(done){
+		var url = acconnection.getAuthorizationRequest();
+		done();
+	});*/
+
+	it('Should throw an exception when requesting Authorization Request Url without callbackUrl', function itCb(done){
+		delete acconnection.connType.callbackUrl;
+		try{
+			var url = acconnection.getAuthorizationRequest();
+			('No Exception.').should.equal('Exception Occurred.');
+		}catch(e) {
+			('Exception Occurred.').should.equal('Exception Occurred.');
+		}
+		done();
+	});
+
+	it('Should throw an exception when requesting Authorization Request Url without clientId', function itCb(done){
+		delete acconnection.connType.clientId;
+		try{
+			var url = acconnection.getAuthorizationRequest();
+			('No Exception.').should.equal('Exception Occurred.');
+		}catch(e) {
+			('Exception Occurred.').should.equal('Exception Occurred.');
+		}
+		done();
+	});
+
+	it('Should throw an exception when requesting Authorization Request Url without authorizationUrl', function itCb(done){
+		delete acconnection.connType.authorizationUrl;
+		try{
+			var url = acconnection.getAuthorizationRequest();
+			('No Exception.').should.equal('Exception Occurred.');
+		}catch(e) {
+			('Exception Occurred.').should.equal('Exception Occurred.');
+		}
+		done();
+	});
 
 	it('ADP Connection Factory should return error', function itCb(done){
 		connection = connectionFactory.createConnection('authorization_code');

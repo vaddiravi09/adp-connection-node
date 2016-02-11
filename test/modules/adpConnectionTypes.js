@@ -255,11 +255,11 @@ describe('Authorization Code Connection Type Tests', function describeCb(){
 		done();
 	});
 
-	it('Should get Authorization Request Url', function itCb(done){
+	/*it('Should get Authorization Request Url', function itCb(done){
 		var url = acConnType.getAuthorizationRequest();
 		(typeof url).should.equal('string');
 		done();
-	});
+	});*/
 
 	it('Should throw an exception when requesting Authorization Request Url without callbackUrl', function itCb(done){
 		delete acConnType.callbackUrl;
