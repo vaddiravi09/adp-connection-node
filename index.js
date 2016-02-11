@@ -1,4 +1,5 @@
-/*'use strict';
+/*
+'use strict';
 
 var server = require('./server');
 var log = require('winston');
