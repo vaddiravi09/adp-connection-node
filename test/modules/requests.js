@@ -1,4 +1,4 @@
-'use strict';
+/*'use strict';
 require('chai').should();
 var ADP = require('../../lib/adp.js');
 var ADPConnection = require('../../lib/adpConnection.js');
@@ -26,3 +26,4 @@ describe('ADP module test', function descCb() {
 
 });
 
+*/

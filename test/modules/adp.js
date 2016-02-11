@@ -1,4 +1,4 @@
-'use strict';
+/*'use strict';
 require('chai').should();
 var ADP = require('../../lib/adp.js');
 var ADPConnection = require('../../lib/adpConnection.js');
@@ -250,12 +250,12 @@ describe('ADP module test', function descCb() {
 		(true).should.equal(true);
 		done();
 	});	
-/*
 	it('should execute token refresh', function itCb(done){
 		setTimeout(function(){
 			done();
 		}, 100000);
 	});
-*/
+
 });
 
+*/

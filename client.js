@@ -1,14 +1,16 @@
 'use strict';
 
 var adp = require('./lib/adp');
-var connectionFactory = adp.ADPAPIConnectionFactory;
-var clientCredentialsConnType = adp.ClientCredentialsConnType;
-var productFactory = adp.ADPAPIProductFactory;
+var ClientCredentialsConnType = adp.ClientCredentialsConnType;
+var ConnectionFactory = adp.ADPAPIConnectionFactory;
+var ProductFactory = adp.ADPAPIProductFactory;
 var log = require('winston');
 
 var userInfo;
 
-var connType = clientCredentialsConnType;
+var connType = new ClientCredentialsConnType();
+var connectionFactory = new ConnectionFactory();
+var productFactory = new ProductFactory();
 
 var initObject = {
 	clientId: 'e62f181c-3233-4636-bb82-9be5c9f3e3e0',
@@ -30,12 +32,5 @@ connection.connect(options, function connectCb(){
 	userInfoHelper.getUserInfo(null, function getUserInfoCb(err, data) {
 		userInfo = data;
 		log.info(JSON.stringify(userInfo));
-		/*
-		var workerHelper = productFactory.createApiProduct(connection, 'Worker');
-		workerHelper.getWorker({associateoid: userInfo.userInfo.associateOID}, function getWorkerCb(err, data) {
-			worker = data;
-			console.log(worker);
-		});
-		*/
 	});
 });
