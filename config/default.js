@@ -24,7 +24,8 @@ module.exports = {
 	},
 	helperMap: {
 		UserInfo: 'userInfoHelper',
-		Worker: 'workerHelper'
+		Worker: 'workerHelper',
+		CorpDirectory: 'corpDirectoryHelper'
 	}
 };
 
