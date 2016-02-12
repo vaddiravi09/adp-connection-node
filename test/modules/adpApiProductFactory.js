@@ -1,7 +1,7 @@
 'use strict';
 require('chai').should();
 
-var adp = require('../../lib/adp');
+var adp = require('../../index');
 var ClientCredentialsConnType = adp.ClientCredentialsConnType;
 var ConnectionFactory = adp.ADPAPIConnectionFactory;
 var ProductFactory = adp.ADPAPIProductFactory;

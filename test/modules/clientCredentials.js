@@ -14,7 +14,7 @@ var stubConn2 = {
 	sslKeyPath: 'iatCerts/iat.key',
 }
 
-var adp = require('../../lib/adp');
+var adp = require('../../index');
 var ClientCredentialsConnType = adp.ClientCredentialsConnType;
 var ConnectionFactory = adp.ADPAPIConnectionFactory;
 
