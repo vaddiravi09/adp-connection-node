@@ -32,12 +32,34 @@ $ npm run lint
 
 # Examples 
 
+
+### Create Client Credentials ADP Connection
 ```javascript
 
-var ADPConnectionType = require('ClientCredentialsConnType')
-var ADP = require('ADP');
-var adp = new ADP();
+var adp = require('adp');
+var ConnectionFactory = adp.ADPAPIConnectionFactory;
+var ClientCredentialsConnType = adp.ClientCredentialsConnType;
+var connType = new ClientCredentialsConnType();
+var initObject = {
+	clientId: 'ec762f06-7410-4f6d-aa82-969902c1836a',
+	clientSecret: '6daf2cd7-4604-46c0-ab43-a645a6571d34',
+	apiUrl: 'https://iat-api.adp.com',
+	tokenUrl: 'https://iat-api.adp.com/auth/oauth/v2/token',
+	sslKeyPath: 'iatCerts/iat.key',
+	sslCertPath: 'iatCerts/iat.pem',
+};
+connType.init(initObject);
 
+var connection = connectionFactory.createConnection('client_credentials');
+connection.init(connType);
+connection.connect({keepAlive: true}, function connectCb(err){
+	if(err) {
+		log.error('Connection failed!');
+	} else {
+		// Connected!
+	}
+	
+});
 
 ```
 
