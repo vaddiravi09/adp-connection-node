@@ -5,7 +5,6 @@ var server;
 var express = require('express');
 var PORT = config.get('server.port');
 var routes = require('./lib/routes');
-var log = require('winston');
 
 function start(cb) {
 	var app = express();
