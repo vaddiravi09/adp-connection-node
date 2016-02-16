@@ -96,6 +96,13 @@ describe('Client Credentials Tests', function describeCb(){
 		});
 	});
 
+	it('ADP Connection Factory isConnected should return false for disconnected instances.', function itCb(done){
+		console.log('connection.isConnected()', connection.isConnected());
+			console.log('WHAT??', connection.getExpiration());
+		(connection.isConnected()).should.equal(false);
+		done();
+		//(connection.getExpiration() < new Date()).should.equal(true);
+	});
 
 	it('ADP Connection Factory should refresh token.', function itCb(done){
 		connection = connectionFactory.createConnection('client_credentials');
