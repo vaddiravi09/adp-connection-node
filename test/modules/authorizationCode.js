@@ -22,14 +22,16 @@ describe('Authorization Code module tests', function describeCb(){
 	it('Should set token expiration based on default expiration.', function itCb(done){
 			var auth = new AuthorizationCode(stubConn);
 			auth.setTokenExpiration({});
-			(auth.tokenExpiration).should.equal(3600000);
+			(auth.tokenExpiration instanceof Date).should.equal(true);
+			//(auth.tokenExpiration).should.equal(3600000);
 			done();
 	});
 
 	it('Should set token expiration after parsing token response.', function itCb(done){
 			var auth = new AuthorizationCode(stubConn);
 			auth.cb = function authCb(err, data) {
-				(auth.tokenExpiration).should.equal(2000);
+				//console.log('DATE??', auth.tokenExpiration instanceof Date);
+				(auth.tokenExpiration instanceof Date).should.equal(true);
 				(err===null).should.equal(true);
 				done();
 			};
