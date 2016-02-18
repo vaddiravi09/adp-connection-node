@@ -10,12 +10,12 @@ var connectionFactory = new ConnectionFactory();
 var log = require('winston');
 
 var validCCInitObject = {
-	clientId: 'e62f181c-3233-4636-bb82-9be5c9f3e3e0',
-	clientSecret: 'fbce97f8-5d3a-42cc-a774-9126c5270625',
+	clientId: '88a73992-07f2-4714-ab4b-de782acd9c4d',
+	clientSecret: 'a130adb7-aa51-49ac-9d02-0d4036b63541',
 	apiUrl: 'https://iat-api.adp.com',
 	tokenUrl: 'https://iat-api.adp.com/auth/oauth/v2/token',
-	sslCertPath: 'iatCerts/iat.pem',
-	sslKeyPath: 'iatCerts/iat.key'
+	sslCertPath: 'iatCerts/apiclient_iat.pem',
+	sslKeyPath: 'iatCerts/apiclient_iat.key'
 }
 var validCCConnType = new ClientCredentialsConnType();
 validCCConnType.init(validCCInitObject);
@@ -37,8 +37,8 @@ var validACInitObject = {
 	apiUrl: 'https://iat-api.adp.com',
 	tokenUrl: 'https://iat-api.adp.com/auth/oauth/v2/token',
 	authorizationUrl: 'https://iat-accounts.adp.com/auth/oauth/v2/authorize',
-	sslKeyPath: 'iatCerts/iat.key',
-	sslCertPath: 'iatCerts/iat.pem',
+	sslKeyPath: 'iatCerts/apiclient_iat.key',
+	sslCertPath: 'iatCerts/apiclient_iat.pem',
 	callbackUrl: 'http://localhost:8889/callback',
 	authorizationCode: 'no_code'
 };
