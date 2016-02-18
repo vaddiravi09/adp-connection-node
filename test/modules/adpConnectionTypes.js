@@ -3,13 +3,10 @@ var adp = require('../../index');
 var ClientCredentialsConnType = adp.ClientCredentialsConnType;
 var ConnectionFactory = adp.ADPAPIConnectionFactory;
 var AuthorizationCodeConnType = adp.AuthorizationCodeConnType;
-var ProductFactory = adp.ADPAPIProductFactory;
 
 var connectionFactory = new ConnectionFactory();
-var productFactory = new ProductFactory();
 
 var log = require('winston');
-
 
 /*
 var invalidCCInitObject = {
