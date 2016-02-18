@@ -33,7 +33,7 @@ var validCCConnType = new ClientCredentialsConnType();
 validCCConnType.init(validCCInitObject);
 
 describe('Client Credentials module tests', function describeCb(){
-/*
+	/*
 	it('Should emit token refresh.', function itCb(done){
 		var connection = connectionFactory.createConnection('client_credentials');
 		connection.init(validCCConnType);
@@ -93,7 +93,7 @@ describe('Client Credentials module tests', function describeCb(){
 			var auth = new ClientCredentials(stubConn);
 			auth.cb = function authCb(err, data) {
 				(auth.tokenExpiration instanceof Date).should.equal(true);
-				(err===null).should.equal(true);
+				(err===null || err===undefined).should.equal(true);
 				done();
 			};
 			auth.parseTokenResponse(null, {access_token: 'testAccessToken', expires_in: 2});
@@ -102,7 +102,7 @@ describe('Client Credentials module tests', function describeCb(){
 	it('Should fail to set token expiration after parsing token response when error is passed.', function itCb(done){
 			var auth = new ClientCredentials(stubConn);
 			auth.cb = function authCb(err, data) {
-				(err===null).should.equal(false);
+				(err===null || err===undefined).should.equal(false);
 				done();
 			};
 			auth.parseTokenResponse({}, {});

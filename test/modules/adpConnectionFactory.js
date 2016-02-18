@@ -52,7 +52,7 @@ describe('Client Credentials Tests', function describeCb(){
 	it('ADP Connection Factory should fail to connect when not initialized with Connection type.', function itCb(done){
 		connection = connectionFactory.createConnection('client_credentials');
 		try{
-			connection.connect({}, function connectCb(err){
+			connection.connect({keepAlive: true}, function connectCb(err){
 				if(err) {
 					('Connection Error Occurred').should.equal('Connection Error Occurred');
 				} else {
@@ -69,7 +69,7 @@ describe('Client Credentials Tests', function describeCb(){
 	it('ADP Connection Factory should connect.', function itCb(done){
 		connection = connectionFactory.createConnection('client_credentials');
 		connection.init(validCCConnType);
-		connection.connect({}, function connectCb(err){
+		connection.connect({keepAlive: true}, function connectCb(err){
 			if(err) {
 				('Connection Error Occurred').should.equal('No Connection Error');
 			} else {
@@ -79,6 +79,12 @@ describe('Client Credentials Tests', function describeCb(){
 		});
 	});
 	
+	it('Should call getExpiration and get token expiration', function itCb(done) {
+		var exp = connection.getExpiration();
+		(exp instanceof Date).should.equal(true);
+		done();
+	}); 
+
 	it('ADP Connection Factory should disconnect.', function itCb(done){
 		connection = connectionFactory.createConnection('client_credentials');
 		connection.init(validCCConnType);
@@ -95,8 +101,6 @@ describe('Client Credentials Tests', function describeCb(){
 	});
 
 	it('ADP Connection Factory isConnected should return false for disconnected instances.', function itCb(done){
-		console.log('connection.isConnected()', connection.isConnected());
-			console.log('WHAT??', connection.getExpiration());
 		(connection.isConnected()).should.equal(false);
 		done();
 		//(connection.getExpiration() < new Date()).should.equal(true);

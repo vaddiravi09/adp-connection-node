@@ -11,30 +11,28 @@ var stubConn = {
 describe('Authorization Code module tests', function describeCb(){
 
 	it('Should return error when invalid cert files are provided.', function itCb(done){
-			var auth = new AuthorizationCode(stubConn);
-			auth.cb = function authCb(err, data) {
-				(err===null).should.equal(false);
-				done();
-			};
-			auth.getCerts();
+		var auth = new AuthorizationCode(stubConn);
+		auth.cb = function authCb(err, data) {
+			(err===null).should.equal(false);
+			done();
+		};
+		auth.getCerts();
 	});
 
 	it('Should set token expiration based on default expiration.', function itCb(done){
-			var auth = new AuthorizationCode(stubConn);
-			auth.setTokenExpiration({});
-			(auth.tokenExpiration instanceof Date).should.equal(true);
-			//(auth.tokenExpiration).should.equal(3600000);
-			done();
+		var auth = new AuthorizationCode(stubConn);
+		auth.setTokenExpiration({});
+		(auth.tokenExpiration instanceof Date).should.equal(true);
+		done();
 	});
 
 	it('Should set token expiration after parsing token response.', function itCb(done){
-			var auth = new AuthorizationCode(stubConn);
-			auth.cb = function authCb(err, data) {
-				//console.log('DATE??', auth.tokenExpiration instanceof Date);
-				(auth.tokenExpiration instanceof Date).should.equal(true);
-				(err===null).should.equal(true);
-				done();
-			};
-			auth.parseTokenResponse(null, {access_token: 'testAccessToken', expires_in: 2});
+		var auth = new AuthorizationCode(stubConn);
+		auth.cb = function authCb(err, data) {
+			(auth.tokenExpiration instanceof Date).should.equal(true);
+			(err===null || err===undefined).should.equal(true);
+			done();
+		};
+		auth.parseTokenResponse(null, {access_token: 'testAccessToken', expires_in: 2});
 	});
 });
