@@ -12,14 +12,14 @@
   "author": "ADP Marketplace",
   "license": "ISC",
   "dependencies": {
+    "adp-core": "^1.0.0",
     "config": "^1.19.0",
     "express": "^4.13.4",
     "mongoose": "^4.3.7",
     "node-uuid": "^1.4.7",
     "request": "^2.67.0",
     "underscore": "^1.8.3",
-    "winston": "^2.1.1",
-    "adpcore": "git+https://github.com/adplabs/adp-core-node.git"
+    "winston": "^2.1.1"
   },
   "devDependencies": {
     "chai": "^3.5.0",
