@@ -1,6 +1,6 @@
 {
   "name": "adp-connection",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "ADP NodeJS APIClient",
   "main": "index.js",
   "scripts": {
