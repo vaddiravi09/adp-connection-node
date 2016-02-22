@@ -70,7 +70,6 @@ router.get('/authenticate', function login(req, res) {
 	connection.init(connType);
 
 	var url = connection.getAuthorizationRequest();
-	console.log('URL', url);
 	res.redirect(url);
 });
 
