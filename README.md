@@ -1,38 +1,14 @@
-# NodeJS APIClient 
+# ADP Connection Library
 
-### Installation / Execution 
+### Description
+The ADP Connection library wraps the authorization (oAuth 2.0) connection steps for connecting to ADPs API gateway.  
+
+### Installation
 ```sh
-$ npm install
-$ node client.js
+$ npm install adp-connection
 ```
 
-### [View HTML Docs](docs/)
-
-# Useful Commands
-
-### Generate Documentation (JSDoc)
-```sh
-$ npm run docs
-```
-
-### Test Execution
-```sh
-$ npm test
-```
-
-### Code Coverage
-```sh
-$ npm run coverage
-```
-
-### Lint
-```sh
-$ npm run lint
-```
-
-# Examples 
-
-
+# Usage 
 ### Create Client Credentials ADP Connection
 ```javascript
 
@@ -123,3 +99,49 @@ router.get('/callback', function callback(req, res){
 });
 
 ```
+# Contributing
+To contribute to the library, please generate a pull request. Before generating the pull request, please insure the following:
+1. Appropriate unit tests have been updated or created.
+2. Code coverage on unit tests must be no less than 95%.
+3. Your code updates have been fully tested and linted with no errors. 
+4. Update README and API documentation as appropriate.
+
+# Sample Client
+A sample client is provided to demonstrate usage of the libraries. The sample client connects to a sandbox environment hosted by ADP, and comes preconfigured with the necessary credentials and certificates to connect to the sandbox server.
+
+### Authorization Code Example
+```sh
+$ git clone https://github.com/adplabs/adp-connection-node.git
+$ npm install
+$ node authorizationCodeExample
+```
+### Client Credentials Example
+```sh
+$ git clone https://github.com/adplabs/adp-connection-node.git
+$ npm install
+$ node clientCredentialsExample
+```
+
+
+# API Documentation (JSDoc)
+```sh
+$ npm run docs
+```
+
+# Test Execution
+```sh
+$ npm test
+```
+
+# Code Coverage
+```sh
+$ npm run coverage
+```
+
+# Lint
+```sh
+$ npm run lint
+```
+
+# License 
+Apache 2
