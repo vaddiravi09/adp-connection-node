@@ -1,7 +1,7 @@
 # ADP Connection Library
 
 ### Description
-The ADP Connection library wraps the authorization (oAuth 2.0) connection steps for connecting to ADPs API gateway.  
+The ADP Connection library wraps the authorization (oAuth 2.0) connection steps for connecting to ADPs API gateway.
 
 ### Installation
 ```sh
@@ -53,6 +53,9 @@ var connection;
 	6. REDIRECT. 
 */
 router.get('/authenticate', function login(req, res) {
+	var adp = require('adp');
+	var ConnectionFactory = adp.ADPAPIConnectionFactory;
+	var AuthorizationCodeConnType = adp.AuthorizationCodeConnType;
 	var connType = new AuthorizationCodeConnType();
 	var initObject = {
 		clientId: 'ec762f06-7410-4f6d-aa82-969902c1836a',
@@ -143,4 +146,4 @@ $ npm run lint
 ```
 
 # License 
-Apache 2
+[Apache 2](http://www.apache.org/licenses/LICENSE-2.0)
