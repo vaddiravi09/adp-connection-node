@@ -116,12 +116,14 @@ A sample client is provided to demonstrate usage of the libraries. The sample cl
 ### Authorization Code Example
 ```sh
 $ git clone https://github.com/adplabs/adp-connection-node.git
+$ cd adp-connection-node
 $ npm install
 $ node authorizationCodeExample
 ```
 ### Client Credentials Example
 ```sh
 $ git clone https://github.com/adplabs/adp-connection-node.git
+$ cd adp-connection-node
 $ npm install
 $ node clientCredentialsExample
 ```
