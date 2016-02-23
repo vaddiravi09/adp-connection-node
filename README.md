@@ -12,10 +12,11 @@ $ npm install adp-connection
 ### Create Client Credentials ADP Connection
 ```javascript
 
-var adp = require('adp');
+var adp = require('adp-connection');
 var ConnectionFactory = adp.ADPAPIConnectionFactory;
 var ClientCredentialsConnType = adp.ClientCredentialsConnType;
 var connType = new ClientCredentialsConnType();
+var connectionFactory = new ConnectionFactory();
 var initObject = {
 	clientId: 'ec762f06-7410-4f6d-aa82-969902c1836a',
 	clientSecret: '6daf2cd7-4604-46c0-ab43-a645a6571d34',
@@ -24,6 +25,7 @@ var initObject = {
 	sslKeyPath: 'iatCerts/iat.key',
 	sslCertPath: 'iatCerts/iat.pem',
 };
+
 connType.init(initObject);
 
 var connection = connectionFactory.createConnection('client_credentials');
@@ -53,10 +55,11 @@ var connection;
 	6. REDIRECT. 
 */
 router.get('/authenticate', function login(req, res) {
-	var adp = require('adp');
+	var adp = require('adp-connection');
 	var ConnectionFactory = adp.ADPAPIConnectionFactory;
 	var AuthorizationCodeConnType = adp.AuthorizationCodeConnType;
 	var connType = new AuthorizationCodeConnType();
+	var connectionFactory = new ConnectionFactory();
 	var initObject = {
 		clientId: 'ec762f06-7410-4f6d-aa82-969902c1836a',
 		clientSecret: '6daf2cd7-4604-46c0-ab43-a645a6571d34',
@@ -68,7 +71,6 @@ router.get('/authenticate', function login(req, res) {
 		callbackUrl: 'http://localhost:8889/callback'
 	};
 	connType.init(initObject);
-	var connectionFactory = new ConnectionFactory();
 	connection = connectionFactory.createConnection('authorization_code');
 	connection.init(connType);
 
