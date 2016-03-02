@@ -3,6 +3,9 @@
 ### Description
 The ADP Connection library wraps the authorization (oAuth 2.0) connection steps for connecting to ADPs API gateway.
 
+### Version
+`1.0.9-beta`
+
 ### Installation
 ```sh
 $ npm install adp-connection
