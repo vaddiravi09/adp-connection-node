@@ -98,7 +98,7 @@ router.get('/callback', function callback(req, res){
 	connection.connType.setAuthorizationCode(code);
 	connection.connect(null, function connectCb(err){
 		if(err) {
-			log.error('Connection failed!');
+			log.error('Connection failed!!');
 		} else {
 			// Connected!!
 		}
