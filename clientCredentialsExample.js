@@ -1,9 +1,11 @@
 'use strict';
 
+process.env.NODE_DEBUG = 'adp-connection';
+
 var adp = require('./index');
 var ClientCredentialsConnType = adp.ClientCredentialsConnType;
 var ConnectionFactory = adp.ADPAPIConnectionFactory;
-var log = require('winston');
+var debug = require('./lib/debug');
 
 var connType = new ClientCredentialsConnType();
 var connectionFactory = new ConnectionFactory();
@@ -25,8 +27,8 @@ var connection = connectionFactory.createConnection('client_credentials');
 connection.init(connType);
 connection.connect(options, function connectCb(err){
 	if(err) {
-		log.error('Not Connected');
+		debug('Not Connected');
 	}else{
-		log.info('Connected with token: ' + connection.accessToken);
+		debug('Connected with token: ' + connection.accessToken);
 	}
 });

@@ -6,8 +6,6 @@ var AuthorizationCodeConnType = adp.AuthorizationCodeConnType;
 
 var connectionFactory = new ConnectionFactory();
 
-var log = require('winston');
-
 //****************
 //CLIENT CREDS TESTS
 //****************

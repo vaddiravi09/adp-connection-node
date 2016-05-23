@@ -1,8 +1,10 @@
 'use strict';
 
+process.env.NODE_DEBUG = 'adp-connection';
+
 var server = require('./server');
-var log = require('winston');
+var debug = require('./lib/debug');
 
 server.start(function startCb() {
-	log.info('Server started callback');
+	debug('Server started callback');
 });

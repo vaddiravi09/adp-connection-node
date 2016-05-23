@@ -19,7 +19,6 @@ var ClientCredentialsConnType = adp.ClientCredentialsConnType;
 var ConnectionFactory = adp.ADPAPIConnectionFactory;
 
 var connectionFactory = new ConnectionFactory();
-var log = require('winston');
 
 var validCCInitObject = {
 	clientId: 'e62f181c-3233-4636-bb82-9be5c9f3e3e0',
