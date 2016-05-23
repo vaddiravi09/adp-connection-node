@@ -106,6 +106,14 @@ router.get('/callback', function callback(req, res){
 });
 
 ```
+
+# Debug
+Enable debugging by setting the `NODE_DEBUG` environment variable.
+
+```sh
+$ export NODE_DEBUG=adp-connection,adp-core
+```
+
 # Contributing
 To contribute to the library, please generate a pull request. Before generating the pull request, please insure the following:
 1. Appropriate unit tests have been updated or created.
