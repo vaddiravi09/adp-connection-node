@@ -1,11 +1,11 @@
 'use strict';
 
-var ADPAPIConnectionFactory = require('./lib/adpApiConnectionFactory');
-var ClientCredentialsConnType = require('./lib/clientCredentialsConnType');
-var AuthorizationCodeConnType = require('./lib/authorizationCodeConnType');
+var ADPConnection = require('./lib/adpConnection');
+
+function createConnection(init) {
+	return new ADPConnection(init);
+}
 
 module.exports = {
-	ADPAPIConnectionFactory: ADPAPIConnectionFactory,
-	AuthorizationCodeConnType: AuthorizationCodeConnType,
-	ClientCredentialsConnType: ClientCredentialsConnType
+	createConnection: createConnection
 };
