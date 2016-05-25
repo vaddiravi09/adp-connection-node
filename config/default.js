@@ -21,6 +21,10 @@ module.exports = {
 	connect: {
 		validCertTypes: ['pem', 'key'],
 		defaultexpiration: 3600
+	},
+	connection: {
+		apiUrl: 'https://iat-api.adp.com',
+		tokenUrl: 'https://iat-api.adp.com/auth/oauth/v2/token'
 	}
 };
 
