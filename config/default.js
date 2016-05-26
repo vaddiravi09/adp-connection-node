@@ -24,7 +24,8 @@ module.exports = {
 	},
 	connection: {
 		apiUrl: 'https://iat-api.adp.com',
-		tokenUrl: 'https://iat-api.adp.com/auth/oauth/v2/token'
+		tokenUrl: 'https://iat-api.adp.com/auth/oauth/v2/token',
+		authorizationUrl: 'https://iat-accounts.adp.com/auth/oauth/v2/authorize'
 	}
 };
 

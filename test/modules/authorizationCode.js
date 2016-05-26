@@ -8,7 +8,27 @@ var stubConn = {
 	sslKeyPath: 'invalid/path.key',
 }
 
+var goodConn = {
+		clientId: 'ec762f06-7410-4f6d-aa82-969902c1836a',
+		clientSecret: '6daf2cd7-4604-46c0-ab43-a645a6571d34',
+		apiUrl: 'https://iat-api.adp.com',
+		tokenUrl: 'https://iat-api.adp.com/auth/oauth/v2/token',
+		authorizationUrl: 'https://iat-accounts.adp.com/auth/oauth/v2/authorize',
+		sslKeyPath: 'iatCerts/apiclient_iat.key',
+		sslCertPath: 'iatCerts/apiclient_iat.pem',
+		callbackUrl: 'http://localhost:8889/callback',
+		authorizationCode: 'oops'
+	};
+
 describe('Authorization Code module tests', function describeCb(){
+
+	it('Should allow call of connect but fail to connect.', function itCb(done){
+		var auth = new AuthorizationCode(goodConn);
+		auth.connect(function connectCb(err) {
+			(err.message).should.equal('Unknown Authentication Error');
+			done();
+		});
+	});
 
 	it('Should return error when invalid cert files are provided.', function itCb(done){
 		var auth = new AuthorizationCode(stubConn);
