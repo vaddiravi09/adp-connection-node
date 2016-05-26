@@ -12,6 +12,7 @@ var connectOpts = {
 var validUrl = require('valid-url');
 var connection;
 var reconnectionObj;
+
 describe('ADPConnection Tests - clean tests:', function describeCb(){
 
 	before(function beforeCb(done) {
@@ -29,7 +30,7 @@ describe('ADPConnection Tests - clean tests:', function describeCb(){
 			var url = connection.getAuthorizationRequest();
 			(typeof validUrl.isUri(url)).should.not.equal(undefined);
 		} catch(e) {
-			('Error creating url').should.equal('No error creating url');
+			'Error creating url'.should.equal('No error creating url');
 		}
 		done();
 	});
@@ -37,7 +38,7 @@ describe('ADPConnection Tests - clean tests:', function describeCb(){
 	it('Allows connection.', function itCb(done) {
 		connection.connect(function connectCb(err) {
 			if(err) {
-				('Error connecting').should.equal('No Error Connecting');
+				'Error connecting'.should.equal('No Error Connecting');
 				return done();
 			}
 			done();
@@ -55,26 +56,26 @@ describe('ADPConnection Tests - clean tests:', function describeCb(){
 		(connection.getExpiration() instanceof Date).should.equal(true);
 		done();
 	});
-	
+
 	it('Provides access to reconnection object.', function itCb(done) {
 		(typeof connection.getReconnectionObject).should.equal('function');
 		reconnectionObj = connection.getReconnectionObject();
 		try{
 			JSON.stringify(reconnectionObj);
-			('ReconnectionObj is valid JSON object').should.equal('ReconnectionObj is valid JSON object');
+			'ReconnectionObj is valid JSON object'.should.equal('ReconnectionObj is valid JSON object');
 		} catch(e) {
-			('ReconnectionObj is not valid JSON object').should.equal('ReconnectionObj is valid JSON object');
+			'ReconnectionObj is not valid JSON object'.should.equal('ReconnectionObj is valid JSON object');
 		}
 		done();
 	});
 
 	it('Provides method to reconnect.', function itCb(done) {
 		(typeof connection.reconnect).should.equal('function');
-		connection.reconnect(reconnectionObj, function reconnectCb(err, conn) {
+		connection.reconnect(reconnectionObj, function reconnectCb(err) {
 			if(err) {
-				('Reconnect is not successful').should.equal('Reconnect is successful');
+				'Reconnect is not successful'.should.equal('Reconnect is successful');
 			} else {
-				('Reconnect is successful').should.equal('Reconnect is successful');
+				'Reconnect is successful'.should.equal('Reconnect is successful');
 			}
 			done();
 		});
@@ -101,7 +102,7 @@ describe('ADPConnection tests - failures', function describeCb() {
 		};
 		var badConnection = new ADPConnection(badConnectOpts);
 		badConnection.connect(function connectCb(err) {
-			(err.description).should.equal('Invalid cert path');
+			err.description.should.equal('Invalid cert path');
 			done();
 		});
 	});
@@ -115,10 +116,10 @@ describe('ADPConnection tests - failures', function describeCb() {
 		};
 		var badConnection = new ADPConnection(badConnectOpts);
 		try {
-			var url = badConnection.getAuthorizationRequest();
-			('No error creating url').should.equal('Error creating url');
+			badConnection.getAuthorizationRequest();
+			'No error creating url'.should.equal('Error creating url');
 		} catch(e) {
-			('Error creating url').should.equal('Error creating url');
+			'Error creating url'.should.equal('Error creating url');
 		}
 		done();
 	});
@@ -132,10 +133,10 @@ describe('ADPConnection tests - failures', function describeCb() {
 		};
 		var badConnection = new ADPConnection(badConnectOpts);
 		try {
-			var url = badConnection.getAuthorizationRequest();
-			('No error creating url').should.equal('Error creating url');
+			badConnection.getAuthorizationRequest();
+			'No error creating url'.should.equal('Error creating url');
 		} catch(e) {
-			('Error creating url').should.equal('Error creating url');
+			'Error creating url'.should.equal('Error creating url');
 		}
 		done();
 	});
@@ -152,10 +153,10 @@ describe('ADPConnection tests - failures', function describeCb() {
 		var badConnection = new ADPConnection(badConnectOpts);
 		delete badConnection.connType;
 		badConnection.connect(function connectCb(err) {
-			(err.message).should.equal('Please initialize connection with connection config object.');
+			err.message.should.equal('Please initialize connection with connection config object.');
 			done();
 		});
-	});	
+	});
 
 	it('Fails to connect with bad configuration.', function itCb(done) {
 		var badConnectOpts = {
@@ -168,10 +169,10 @@ describe('ADPConnection tests - failures', function describeCb() {
 		};
 		var badConnection = new ADPConnection(badConnectOpts);
 		badConnection.connect(function connectCb(err) {
-			(err.message).should.equal('Unknown Authentication Error');
+			err.message.should.equal('Unknown Authentication Error');
 			done();
 		});
-	});	
+	});
 
 	it('Fails to connect with bad configuration.', function itCb(done) {
 		var goodConnectOpts = {
@@ -183,13 +184,13 @@ describe('ADPConnection tests - failures', function describeCb() {
 			granttype: 'client_credentials'
 		};
 		var goodConnection = new ADPConnection(goodConnectOpts);
-		goodConnection.connect(function connectCb(err) {
-			var reconnectionObj = goodConnection.getReconnectionObject();
+		goodConnection.connect(function connectCb() {
+			reconnectionObj = goodConnection.getReconnectionObject();
 			reconnectionObj.tokenExpiration = new Date('01/01/2000');
-			goodConnection.reconnect(reconnectionObj, function reconnectCb(err, conn) {
-				(err.message).should.equal('Token has expired. Reconnection not possible.')
+			goodConnection.reconnect(reconnectionObj, function reconnectCb(err) {
+				err.message.should.equal('Token has expired. Reconnection not possible.');
 				done();
 			});
 		});
-	});	
+	});
 });
