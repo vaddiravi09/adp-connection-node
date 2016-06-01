@@ -10,7 +10,13 @@ var connection = {
 	tokenUrl: 'https://iat-api.adp.com/auth/oauth/v2/token',
 	authorizationUrl: 'https://iat-accounts.adp.com/auth/oauth/v2/authorize'
 };
+var ditconnection = {
+	apiUrl: 'https://accountsdit.nj.adp.com',
+	tokenUrl: 'https://accountsdit.nj.adp.com/auth/oauth/v2/token',
+	authorizationUrl: 'https://accountsdit.nj.adp.com/auth/oauth/v2/authorize'
+};
 var conn = process.env.NODE_ENV === 'TEST' ? testconnection : connection;
+conn = process.env.NODE_ENV === 'DIT' ? ditconnection : conn;
 
 module.exports = {
 	db: {
