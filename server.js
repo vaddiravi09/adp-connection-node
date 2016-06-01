@@ -4,7 +4,7 @@ var config = require('config');
 var server;
 var express = require('express');
 var PORT = config.get('server.port');
-var routes = require('./lib/routes');
+var routes = require('./routes');
 
 function start(cb) {
 	var app = express();

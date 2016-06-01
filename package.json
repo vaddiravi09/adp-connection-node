@@ -4,9 +4,9 @@
   "description": "ADP NodeJS APIClient",
   "main": "index.js",
   "scripts": {
-    "coverage": "NODE_ENV=TEST istanbul cover _mocha; cp coverage/lcov-report/index.html test/coverage.html",
+    "coverage": "NODE_DEBUG=adp-connection NODE_ENV=TEST istanbul cover _mocha; cp coverage/lcov-report/index.html test/coverage.html",
     "docs": "jsdoc ./lib -r -p -d docs/",
-    "test": "mocha",
+    "test": "NODE_ENV=TEST mocha",
     "lint": "eslint ./"
   },
   "author": "ADP Marketplace",
@@ -26,6 +26,7 @@
     "istanbul": "^0.4.2",
     "jsdoc": "^3.4.0",
     "mocha": "^2.4.5",
-    "restler": "^3.4.0"
+    "restler": "^3.4.0",
+    "valid-url": "^1.0.9"
   }
 }
