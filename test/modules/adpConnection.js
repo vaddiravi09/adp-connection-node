@@ -1,9 +1,10 @@
 'use strict';
 require('chai').should();
 var ADPConnection = require('../../lib/adpConnection');
+var mockServer = require('../lib/mockServer');
 var connectOpts = {
-	clientId: 'e62f181c-3233-4636-bb82-9be5c9f3e3e0',
-	clientSecret: 'fbce97f8-5d3a-42cc-a774-9126c5270625',
+	clientId: 'testclientid',
+	clientSecret: 'testclientsecret',
 	sslCertPath: 'iatCerts/apiclient_iat.pem',
 	sslKeyPath: 'iatCerts/apiclient_iat.key',
 	callbackUrl: 'http://localhost:8889/callback',
@@ -17,11 +18,11 @@ describe('ADPConnection Tests - clean tests:', function describeCb(){
 
 	before(function beforeCb(done) {
 		connection = new ADPConnection(connectOpts);
-		done();
+		mockServer.start(done);
 	});
 
 	after(function afterCb(done) {
-		done();
+		mockServer.stop(done);
 	});
 
 	it('Provides getAuthorizationRequest method and returns valid URL.', function itCb(done) {
@@ -39,7 +40,6 @@ describe('ADPConnection Tests - clean tests:', function describeCb(){
 		connection.connect(function connectCb(err) {
 			if(err) {
 				'Error connecting'.should.equal('No Error Connecting');
-				return done();
 			}
 			done();
 		});

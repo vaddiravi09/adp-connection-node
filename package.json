@@ -6,7 +6,7 @@
   "scripts": {
     "coverage": "NODE_DEBUG=adp-connection NODE_ENV=TEST istanbul cover _mocha; cp coverage/lcov-report/index.html test/coverage.html",
     "docs": "jsdoc ./lib -r -p -d docs/",
-    "test": "mocha",
+    "test": "NODE_ENV=TEST mocha",
     "lint": "eslint ./"
   },
   "author": "ADP Marketplace",

@@ -2,6 +2,7 @@
 require('chai').should();
 
 var AuthorizationCode = require('../../lib/authorizationCode');
+var mockServer = require('../lib/mockServer');
 var stubConn = {
 	granttype: 'authorization_code',
 	sslCertPath: 'invalid/path.pem',
@@ -11,9 +12,9 @@ var stubConn = {
 var goodConn = {
 		clientId: 'ec762f06-7410-4f6d-aa82-969902c1836a',
 		clientSecret: '6daf2cd7-4604-46c0-ab43-a645a6571d34',
-		apiUrl: 'https://iat-api.adp.com',
-		tokenUrl: 'https://iat-api.adp.com/auth/oauth/v2/token',
-		authorizationUrl: 'https://iat-accounts.adp.com/auth/oauth/v2/authorize',
+		apiUrl: 'http://localhost:55555/api',
+		tokenUrl: 'http://localhost:55555/token',
+		authorizationUrl: 'http://localhost:55555/authorize',
 		sslKeyPath: 'iatCerts/apiclient_iat.key',
 		sslCertPath: 'iatCerts/apiclient_iat.pem',
 		callbackUrl: 'http://localhost:8889/callback',
@@ -22,10 +23,27 @@ var goodConn = {
 
 describe('Authorization Code module tests', function describeCb(){
 
+	before(function beforeCb(done) {
+		mockServer.start(done);
+	});
+
+	after(function afterCb(done) {
+		mockServer.stop(done);
+	});
+
+
 	it('Should allow call of connect but fail to connect.', function itCb(done){
 		var auth = new AuthorizationCode(goodConn);
 		auth.connect(function connectCb(err) {
 			(err.message).should.equal('Unknown Authentication Error');
+			done();
+		});
+	});
+
+	it('Should allow call of connect and successfully connect.', function itCb(done){
+		var auth = new AuthorizationCode(goodConn);
+		auth.connect(function connectCb(err) {
+			(typeof err).should.equal('undefined');
 			done();
 		});
 	});
