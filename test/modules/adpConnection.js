@@ -8,7 +8,10 @@ var connectOpts = {
 	sslCertPath: 'iatCerts/apiclient_iat.pem',
 	sslKeyPath: 'iatCerts/apiclient_iat.key',
 	callbackUrl: 'http://localhost:8889/callback',
-	granttype: 'client_credentials'
+	granttype: 'client_credentials',
+	apiUrl: 'http://localhost:55555/api',
+	tokenUrl: 'http://localhost:55555/token',
+	authorizationUrl: 'http://localhost:55555/authorize'
 };
 var validUrl = require('valid-url');
 var connection;
@@ -91,6 +94,14 @@ describe('ADPConnection Tests - clean tests:', function describeCb(){
 
 describe('ADPConnection tests - failures', function describeCb() {
 
+	before(function beforeCb(done) {
+		mockServer.start(done);
+	});
+
+	after(function afterCb(done) {
+		mockServer.stop(done);
+	});
+
 	it('Fails connect with invalid certs.', function itCb(done) {
 		var badConnectOpts = {
 			clientId: 'e62f181c-3233-4636-bb82-9be5c9f3e3e0',
@@ -98,7 +109,10 @@ describe('ADPConnection tests - failures', function describeCb() {
 			sslCertPath: 'invalid/apiclient_iat.pem',
 			sslKeyPath: 'invalid/apiclient_iat.key',
 			callbackUrl: 'http://localhost:8889/callback',
-			granttype: 'client_credentials'
+			granttype: 'client_credentials',
+			apiUrl: 'http://localhost:55555/api',
+			tokenUrl: 'http://localhost:55555/token',
+			authorizationUrl: 'http://localhost:55555/authorize'
 		};
 		var badConnection = new ADPConnection(badConnectOpts);
 		badConnection.connect(function connectCb(err) {
@@ -112,7 +126,10 @@ describe('ADPConnection tests - failures', function describeCb() {
 			clientSecret: 'fbce97f8-5d3a-42cc-a774-9126c5270625',
 			sslCertPath: 'iatCerts/apiclient_iat.pem',
 			sslKeyPath: 'iatCerts/apiclient_iat.key',
-			callbackUrl: 'http://localhost:8889/callback'
+			callbackUrl: 'http://localhost:8889/callback',
+			apiUrl: 'http://localhost:55555/api',
+			tokenUrl: 'http://localhost:55555/token',
+			authorizationUrl: 'http://localhost:55555/authorize'
 		};
 		var badConnection = new ADPConnection(badConnectOpts);
 		try {
@@ -129,13 +146,17 @@ describe('ADPConnection tests - failures', function describeCb() {
 			clientId: 'e62f181c-3233-4636-bb82-9be5c9f3e3e0',
 			clientSecret: 'fbce97f8-5d3a-42cc-a774-9126c5270625',
 			sslCertPath: 'iatCerts/apiclient_iat.pem',
-			sslKeyPath: 'iatCerts/apiclient_iat.key'
+			sslKeyPath: 'iatCerts/apiclient_iat.key',
+			apiUrl: 'http://localhost:55555/api',
+			tokenUrl: 'http://localhost:55555/token',
+			authorizationUrl: 'http://localhost:55555/authorize'	
 		};
 		var badConnection = new ADPConnection(badConnectOpts);
 		try {
 			badConnection.getAuthorizationRequest();
 			'No error creating url'.should.equal('Error creating url');
 		} catch(e) {
+			console.log(e);
 			'Error creating url'.should.equal('Error creating url');
 		}
 		done();
@@ -148,7 +169,10 @@ describe('ADPConnection tests - failures', function describeCb() {
 			sslCertPath: 'iatCerts/apiclient_iat.pem',
 			sslKeyPath: 'iatCerts/apiclient_iat.key',
 			callbackUrl: 'http://localhost:8889/callback',
-			granttype: 'client_credentials'
+			granttype: 'client_credentials',
+			apiUrl: 'http://localhost:55555/api',
+			tokenUrl: 'http://localhost:55555/token',
+			authorizationUrl: 'http://localhost:55555/authorize'
 		};
 		var badConnection = new ADPConnection(badConnectOpts);
 		delete badConnection.connType;
@@ -165,7 +189,10 @@ describe('ADPConnection tests - failures', function describeCb() {
 			sslCertPath: 'iatCerts/apiclient_iat.pem',
 			sslKeyPath: 'iatCerts/apiclient_iat.key',
 			callbackUrl: 'http://localhost:8889/callback',
-			granttype: 'client_credentials'
+			granttype: 'client_credentials',
+			apiUrl: 'http://localhost:55555/api',
+			tokenUrl: 'http://localhost:55555/token',
+			authorizationUrl: 'http://localhost:55555/authorize'	
 		};
 		var badConnection = new ADPConnection(badConnectOpts);
 		badConnection.connect(function connectCb(err) {
@@ -181,7 +208,10 @@ describe('ADPConnection tests - failures', function describeCb() {
 			sslCertPath: 'iatCerts/apiclient_iat.pem',
 			sslKeyPath: 'iatCerts/apiclient_iat.key',
 			callbackUrl: 'http://localhost:8889/callback',
-			granttype: 'client_credentials'
+			granttype: 'client_credentials',
+			apiUrl: 'http://localhost:55555/api',
+			tokenUrl: 'http://localhost:55555/token',
+			authorizationUrl: 'http://localhost:55555/authorize'
 		};
 		var goodConnection = new ADPConnection(goodConnectOpts);
 		goodConnection.connect(function connectCb() {
