@@ -10,6 +10,11 @@ var connectOpts = {
 	callbackUrl: 'http://localhost:8889/callback',
 	granttype: 'client_credentials'
 };
+var external = {
+	apiUrl: 'http://localhost:55555/api',
+	tokenUrl: 'http://localhost:55555/token',
+	authorizationUrl: 'http://localhost:55555/authorize'
+}
 var validUrl = require('valid-url');
 var connection;
 var reconnectionObj;
@@ -18,6 +23,7 @@ describe('ADPConnection Tests - clean tests:', function describeCb(){
 
 	before(function beforeCb(done) {
 		connection = new ADPConnection(connectOpts);
+		connection.externalConfig(external);
 		mockServer.start(done);
 	});
 
@@ -91,6 +97,14 @@ describe('ADPConnection Tests - clean tests:', function describeCb(){
 
 describe('ADPConnection tests - failures', function describeCb() {
 
+	before(function beforeCb(done) {
+		mockServer.start(done);
+	});
+
+	after(function afterCb(done) {
+		mockServer.stop(done);
+	});
+	
 	it('Fails connect with invalid certs.', function itCb(done) {
 		var badConnectOpts = {
 			clientId: 'e62f181c-3233-4636-bb82-9be5c9f3e3e0',
@@ -101,6 +115,7 @@ describe('ADPConnection tests - failures', function describeCb() {
 			granttype: 'client_credentials'
 		};
 		var badConnection = new ADPConnection(badConnectOpts);
+		badConnection.externalConfig(external);
 		badConnection.connect(function connectCb(err) {
 			err.description.should.equal('Invalid cert path');
 			done();
@@ -168,6 +183,7 @@ describe('ADPConnection tests - failures', function describeCb() {
 			granttype: 'client_credentials'
 		};
 		var badConnection = new ADPConnection(badConnectOpts);
+		badConnection.externalConfig(external);
 		badConnection.connect(function connectCb(err) {
 			err.message.should.equal('Unknown Authentication Error');
 			done();
@@ -184,6 +200,7 @@ describe('ADPConnection tests - failures', function describeCb() {
 			granttype: 'client_credentials'
 		};
 		var goodConnection = new ADPConnection(goodConnectOpts);
+		goodConnection.externalConfig(external);
 		goodConnection.connect(function connectCb() {
 			reconnectionObj = goodConnection.getReconnectionObject();
 			reconnectionObj.tokenExpiration = new Date('01/01/2000');
