@@ -139,12 +139,6 @@ $ npm install
 $ node clientCredentialsExample
 ```
 
-
-# API Documentation (JSDoc)
-```sh
-$ npm run docs
-```
-
 # Test Execution
 ```sh
 $ npm test
