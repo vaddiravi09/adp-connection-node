@@ -8,6 +8,10 @@
     "test": "NODE_ENV=TEST mocha",
     "lint": "eslint ./"
   },
+  "repository": {
+    "type": "git",
+    "url": "ssh://git@github.com:adplabs/adp-connection-node.git"
+  },
   "author": "ADP Marketplace",
   "license": "ISC",
   "dependencies": {
