@@ -6,6 +6,9 @@ The ADP Connection library wraps the authorization (oAuth 2.0) connection steps 
 ### Version
 `2.0.0`
 
+### Previous version support
+`npm install adp-connection@1.1.1`
+
 ### Installation
 ```sh
 $ npm install adp-connection
