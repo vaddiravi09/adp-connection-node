@@ -10,7 +10,10 @@ var connectionOpts = {
 	clientSecret: 'a130adb7-aa51-49ac-9d02-0d4036b63541',
 	granttype: 'client_credentials',
 	sslCertPath: 'iatCerts/apiclient_iat.pem',
-	sslKeyPath: 'iatCerts/apiclient_iat.key'
+	sslKeyPath: 'iatCerts/apiclient_iat.key',
+	apiUrl: 'https://iat-api.adp.com',
+	tokenUrl: 'https://iat-api.adp.com/auth/oauth/v2/token',
+	authorizationUrl: 'https://iat-accounts.adp.com/auth/oauth/v2/authorize'
 };
 
 var conn = adpConnection.createConnection(connectionOpts);

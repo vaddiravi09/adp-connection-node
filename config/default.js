@@ -1,9 +1,9 @@
 'use strict';
 
 var connection = {
-	apiUrl: 'https://iat-api.adp.com',
-	tokenUrl: 'https://iat-api.adp.com/auth/oauth/v2/token',
-	authorizationUrl: 'https://iat-accounts.adp.com/auth/oauth/v2/authorize'
+	apiUrl: 'https://api.adp.com',
+	tokenUrl: 'https://api.adp.com/auth/oauth/v2/token',
+	authorizationUrl: 'https://accounts.adp.com/auth/oauth/v2/authorize'
 };
 
 module.exports = {
