@@ -4,7 +4,7 @@
 The ADP Connection library wraps the authorization (oAuth 2.0) connection steps for connecting to ADPs API gateway.
 
 ### Version
-`1.1.1`
+`2.0.0`
 
 ### Installation
 ```sh
@@ -13,98 +13,53 @@ $ npm install adp-connection
 
 # Usage 
 ### Create Client Credentials ADP Connection
-```javascript
+```js
+import adpConnection from 'adp-connection';
 
-var adp = require('adp-connection');
-var ConnectionFactory = adp.ADPAPIConnectionFactory;
-var ClientCredentialsConnType = adp.ClientCredentialsConnType;
-var connType = new ClientCredentialsConnType();
-var connectionFactory = new ConnectionFactory();
-var initObject = {
-	clientId: 'ec762f06-7410-4f6d-aa82-969902c1836a',
-	clientSecret: '6daf2cd7-4604-46c0-ab43-a645a6571d34',
-	apiUrl: 'https://iat-api.adp.com',
-	tokenUrl: 'https://iat-api.adp.com/auth/oauth/v2/token',
-	sslKeyPath: 'iatCerts/iat.key',
-	sslCertPath: 'iatCerts/iat.pem',
+const connectionOpts = {
+    clientId: '1234567890',
+    clientSecret: 'ABC-DEF-GHI-JKL',
+    granttype: 'client_credentials',
+    sslCertPath: './certs/cert.pem',
+    sslKeyPath: './certs/cert.key'
 };
-
-connType.init(initObject);
-
-var connection = connectionFactory.createConnection('client_credentials');
-connection.init(connType);
-connection.connect({keepAlive: true}, function connectCb(err){
-	if(err) {
-		log.error('Connection failed!');
-	} else {
-		// Connected!
-	}
-});
-
+const connectionComplete = err => {
+    // Use adp-core to do all the things...
+};
+const conn = adpConnection.createConnection(connectionOpts);
+conn.connect(connectionComplete);
 ```
 
 ### Create Authorization Code ADP Connection
-```javascript
-var express = require('express');
-var router = express.Router();
-var connection;
 
-/**
-	1. CREATE CONNECTION CONFIGURAITON OBJECT (AuthorizationCodeConnType)
-	2. INITIALIZE CONFIG OBJECT
-	3. CREATE CONNECTION OBJECT
-	4. INITIALIZE CONNECTION OBJECT WITH CONFIG OBJECT. 
-	5. OBTAIN AUTHORIZATION REQUEST URL.
-	6. REDIRECT. 
-*/
-router.get('/authenticate', function login(req, res) {
-	var adp = require('adp-connection');
-	var ConnectionFactory = adp.ADPAPIConnectionFactory;
-	var AuthorizationCodeConnType = adp.AuthorizationCodeConnType;
-	var connType = new AuthorizationCodeConnType();
-	var connectionFactory = new ConnectionFactory();
-	var initObject = {
-		clientId: 'ec762f06-7410-4f6d-aa82-969902c1836a',
-		clientSecret: '6daf2cd7-4604-46c0-ab43-a645a6571d34',
-		apiUrl: 'https://iat-api.adp.com',
-		tokenUrl: 'https://iat-api.adp.com/auth/oauth/v2/token',
-		authorizationUrl: 'https://iat-accounts.adp.com/auth/oauth/v2/authorize',
-		sslKeyPath: 'iatCerts/iat.key',
-		sslCertPath: 'iatCerts/iat.pem',
-		callbackUrl: 'http://localhost:8889/callback'
-	};
-	connType.init(initObject);
-	connection = connectionFactory.createConnection('authorization_code');
-	connection.init(connType);
+```js
+import adpConnection from 'adp-connection';
 
-	var url = connection.getAuthorizationRequest();
-	res.redirect(url);
-});
+const connectionOpts = {
+    clientId: '1234567890',
+    clientSecret: 'ABC-DEF-GHI-JKL',
+    granttype: 'authorization_code',
+    sslCertPath: './certs/cert.pem',
+    sslKeyPath: './certs/cert.key',
+    callbackUrl: 'https://myapp.domain.com/callback'
+};
+const conn = adpConnection.createConnection(connectionOpts);
 
-/**
-	7. AUTHORIZATION RESPONSE RECEIVED.
-	8. OBTAIN AUTHORIZATION CODE FROM QUERY PARAM.
-	9. OBTAIN STATE FROM QUERY PARAM.
-	10. SET AUTHORIZATION CODE IN CONNECTION CONFIGURATION.
-	11. CONNECT.
-*/
-router.get('/callback', function callback(req, res){
-	var state = req.query.state;
-	var code = req.query.code;
-	if(!code) {
-		log.error('Error, no authorization code received');
-	}
+// in an express app...
+res.redirect(conn.getAuthorizationRequest());
 
-	connection.connType.setAuthorizationCode(code);
-	connection.connect(null, function connectCb(err){
-		if(err) {
-			log.error('Connection failed!');
-		} else {
-			// Connected!!
-		}
-	});
-});
+// Authorization endpoint will respond to `https://myapp.domain.com/callback` with `code` query parameter
+const authorizationCode = req.query.code;
 
+// Set authorizationCode in connection options. 
+connectionOpts.authorizationCode = authorizationCode;
+
+// createConnection with authorizationCode set.
+const conn = adpConnection.createConnection(connectionOpts);
+const connectionComplete = err => {
+    // connected ...
+};
+conn.connect(connectionComplete);
 ```
 
 # Debug
@@ -117,7 +72,7 @@ $ export NODE_DEBUG=adp-connection,adp-core
 # Contributing
 To contribute to the library, please generate a pull request. Before generating the pull request, please insure the following:
 1. Appropriate unit tests have been updated or created.
-2. Code coverage on unit tests must be no less than 95%.
+2. Code coverage on unit tests must be no less than 100%.
 3. Your code updates have been fully tested and linted with no errors. 
 4. Update README and API documentation as appropriate.
 

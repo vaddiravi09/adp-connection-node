@@ -1,7 +1,7 @@
 {
   "name": "adp-connection",
   "version": "1.1.1",
-  "description": "ADP NodeJS APIClient",
+  "description": "ADP Connection Library",
   "main": "index.js",
   "scripts": {
     "coverage": "NODE_DEBUG=adp-connection NODE_ENV=TEST istanbul cover _mocha; cp coverage/lcov-report/index.html test/coverage.html",
