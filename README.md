@@ -12,6 +12,8 @@ $ npm install adp-connection
 ```
 
 # Usage 
+## [API Docs & Examples](docs)
+
 ### Create Client Credentials ADP Connection
 ```js
 import adpConnection from 'adp-connection';
