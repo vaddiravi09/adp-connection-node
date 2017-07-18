@@ -3,8 +3,7 @@
 ### Description
 The ADP Connection library wraps the authorization (oAuth 2.0) connection steps for connecting to ADPs API gateway.
 
-### Version
-`2.0.0`
+[![npm version](https://badge.fury.io/js/adp-connection.svg)](https://badge.fury.io/js/adp-connection)
 
 ### Previous version support
 `npm install adp-connection@1.1.1`
