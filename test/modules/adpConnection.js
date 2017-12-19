@@ -92,6 +92,57 @@ describe('ADPConnection Tests - clean tests:', function describeCb(){
 
 });
 
+describe('ADPConnection tests - authorization code specific', function descibeCb() {
+	var authCodeConnection;
+
+	before(function beforeCb(done) {
+		authCodeConnection = new ADPConnection({
+			clientId: 'testclientid',
+			clientSecret: 'testclientsecret',
+			sslCertPath: 'iatCerts/apiclient_iat.pem',
+			sslKeyPath: 'iatCerts/apiclient_iat.key',
+			callbackUrl: 'http://localhost:8889/callback',
+			granttype: 'authorization_code',
+			apiUrl: 'http://localhost:55555/api',
+			tokenUrl: 'http://localhost:55555/token',
+			authorizationUrl: 'http://localhost:55555/authorize'
+		});
+		mockServer.start(done);
+	});
+
+	after(function afterCb(done) {
+		mockServer.stop(done);
+	});
+
+	it('Allows connection.', function itCb(done) {
+		mockServer.resetLoop();
+		authCodeConnection.connect(function connectCb(err) {
+			if(err) {
+				'Error connecting'.should.equal('No Error Connecting');
+			}
+			done();
+		});
+	});
+
+	it('Provides successful reconnection after expiration.', function itCb(done) {
+
+		mockServer.resetLoop();
+		var authCodeReconnectionObj = authCodeConnection.getReconnectionObject();
+		authCodeReconnectionObj.tokenExpiration = new Date('01/01/2000');
+
+		(typeof connection.reconnect).should.equal('function');
+		authCodeConnection.reconnect(authCodeReconnectionObj, function reconnectCb(err) {
+			if(err) {
+				'Reconnect is not successful'.should.equal('Reconnect is successful');
+			} else {
+				'Reconnect is successful'.should.equal('Reconnect is successful');
+			}
+			done();
+		});
+	});
+
+});
+
 describe('ADPConnection tests - failures', function describeCb() {
 
 	before(function beforeCb(done) {
@@ -149,7 +200,7 @@ describe('ADPConnection tests - failures', function describeCb() {
 			sslKeyPath: 'iatCerts/apiclient_iat.key',
 			apiUrl: 'http://localhost:55555/api',
 			tokenUrl: 'http://localhost:55555/token',
-			authorizationUrl: 'http://localhost:55555/authorize'	
+			authorizationUrl: 'http://localhost:55555/authorize'
 		};
 		var badConnection = new ADPConnection(badConnectOpts);
 		try {
@@ -192,7 +243,7 @@ describe('ADPConnection tests - failures', function describeCb() {
 			granttype: 'client_credentials',
 			apiUrl: 'http://localhost:55555/api',
 			tokenUrl: 'http://localhost:55555/token',
-			authorizationUrl: 'http://localhost:55555/authorize'	
+			authorizationUrl: 'http://localhost:55555/authorize'
 		};
 		var badConnection = new ADPConnection(badConnectOpts);
 		badConnection.connect(function connectCb(err) {
@@ -201,7 +252,7 @@ describe('ADPConnection tests - failures', function describeCb() {
 		});
 	});
 
-	it('Fails to connect with bad configuration.', function itCb(done) {
+	it('Fails to connect with an expired token.', function itCb(done) {
 		var goodConnectOpts = {
 			clientId: 'e62f181c-3233-4636-bb82-9be5c9f3e3e0',
 			clientSecret: 'fbce97f8-5d3a-42cc-a774-9126c5270625',
