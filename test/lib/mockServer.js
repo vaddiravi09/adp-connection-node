@@ -2,12 +2,18 @@
 'use strict';
 
 var express = require('express');
+var bodyParser = require('body-parser');
 var app = express();
+app.use(bodyParser());
 var i = 0;
 
 app.post('/token', function testeventCb(req, res) {
 	if(i % 2 === 0) {
-		res.status(200).send({access_token: 1, expires_in: 3600});
+		var resp = {access_token: 1, expires_in: 3600};
+		if (req.body.grant_type === 'authorization_code') {
+			resp = {access_token: 1, refresh_token: 2, expires_in: 3600};
+		}
+		res.status(200).send(resp);
 	} else {
 		res.status(500).send({error: 1});
 	}
@@ -32,8 +38,12 @@ function stop(cb) {
 	if(typeof server.close === 'function') server.close(cb);
 }
 
+function resetLoop() {
+	i = 0;
+}
 
 module.exports = {
 	start: start,
-	stop: stop
+	stop: stop,
+	resetLoop: resetLoop
 };

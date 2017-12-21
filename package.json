@@ -1,6 +1,6 @@
 {
   "name": "adp-connection",
-  "version": "2.0.3",
+  "version": "2.1",
   "description": "ADP Connection Library",
   "main": "index.js",
   "scripts": {
@@ -17,15 +17,16 @@
   "dependencies": {
     "adp-core": "^1.0.0",
     "config": "^1.19.0",
-    "express": "^4.13.4",
     "mongoose": "^4.3.7",
     "node-uuid": "^1.4.7",
     "request": "^2.67.0",
     "underscore": "^1.8.3"
   },
   "devDependencies": {
+    "body-parser": "^1.18.2",
     "chai": "^3.5.0",
     "eslint": "^1.10.3",
+    "express": "^4.13.4",
     "istanbul": "^0.4.2",
     "mocha": "^2.4.5",
     "restler": "^3.4.0",

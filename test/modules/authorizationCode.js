@@ -48,6 +48,22 @@ describe('Authorization Code module tests', function describeCb(){
 		});
 	});
 
+	it('Should allow call of refresh but fail to connect.', function itCb(done){
+		var auth = new AuthorizationCode(goodConn);
+		auth.refresh('refresh_token', function connectCb(err) {
+			(err.message).should.equal('Unknown Authentication Error');
+			done();
+		});
+	});
+
+	it('Should allow call of refresh and successfully connect.', function itCb(done){
+		var auth = new AuthorizationCode(goodConn);
+		auth.refresh('refresh_token', function connectCb(err) {
+			(typeof err).should.equal('undefined');
+			done();
+		});
+	});
+
 	it('Should return error when invalid cert files are provided.', function itCb(done){
 		var auth = new AuthorizationCode(stubConn);
 		auth.cb = function authCb(err, data) {
