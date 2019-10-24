@@ -1,3 +1,5 @@
+'use strict';
+
 var ADPConnection = require('./lib/adpConnection');
 
 function createConnection(init) {
